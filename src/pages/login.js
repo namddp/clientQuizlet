@@ -84,3 +84,7 @@
 //     </div>
 //   );
 // }
+
+export default function LoginPage() {
+  return <h1>HEllo login page</h1>;
+}

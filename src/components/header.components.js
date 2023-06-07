@@ -7,16 +7,16 @@ export default function Header() {
       <header className="container mx-auto flex items-center justify-between py-0">
         <div className="flex items-center space-x-4">
           <Link href="/trangchu">
-            <span className="text-lg font-bold text-blue-500 m-2">logo</span>
+            <span className="text-lg font-bold text-green-500 m-2">logo</span>
           </Link>
           <nav className="space-x-4">
             <Link href="/trangchu">
-              <span className="text-gray-700 hover:text-blue-500 m-2">
+              <span className="text-gray-700 hover:text-green-500 m-2">
                 Trang chủ
               </span>
             </Link>
             <Link href="/chude">
-              <span className="text-gray-700 hover:text-blue-500 m-2">
+              <span className="text-gray-700 hover:text-green-500 m-2">
                 Chủ đề
               </span>
             </Link>
@@ -30,12 +30,12 @@ export default function Header() {
             className="flex-grow px-2 py-2 border border-gray-300 rounded-full m-1"
           />
           <Link href="/login">
-            <button className="px-4 py-2 bg-gray-300 text-white rounded-full hover:bg-blue-600 m-1">
+            <button className="px-4 py-2 bg-gray-300 text-white rounded-full hover:bg-green-600 m-1">
               Đăng nhập
             </button>
           </Link>
           <Link href="/register">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 m-1">
+            <button className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 m-1">
               Đăng ký
             </button>
           </Link>

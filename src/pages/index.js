@@ -288,7 +288,7 @@ const RegistrationPage = () => {
                     required
                   />
                   <span className="text-xs">
-                    I have read and accept the Quizlet's{" "}
+                    I have read and accept the Quizlets{" "}
                     <a
                       href="https://quizlet.com/tos"
                       target="_blank"

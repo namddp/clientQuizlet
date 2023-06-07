@@ -3,6 +3,8 @@
 // import { FaGoogle, FaRegEnvelope } from "react-icons/fa";
 // import { MdLockOutline } from "react-icons/md";
 
+import Header from "@/components/Header";
+
 // export default function Login() {
 //   return (
 //     <div className="flex flex-col items-center justify-center min-h-screen py-2 ">
@@ -86,5 +88,9 @@
 // }
 
 export default function LoginPage() {
-  return <h1>HEllo login page</h1>;
+  return (
+    <main>
+      <Header />
+    </main>
+  );
 }

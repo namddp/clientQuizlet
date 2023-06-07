@@ -1,0 +1,42 @@
+.root {
+  .menuButton {
+    &:hover {
+      background-color: #423ed8;
+    }
+
+    --size: 40px;
+    width: var(--size);
+    height: var(--size);
+  }
+
+  .navItem {
+    &:hover {
+      &::after {
+        background: #a8b1ff;
+        position: absolute;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        height: 0.25rem;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: " ";
+      }
+    }
+  }
+
+  .visited {
+    position: relative;
+    &::after {
+      background: #a8b1ff;
+      position: absolute;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      height: 0.25rem;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: " ";
+    }
+  }
+}

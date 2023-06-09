@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Text, Select, Checkbox } from "@chakra-ui/react";
 import GoogleLoginButton from "./api/auth/GoogleLoginButton";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -76,7 +77,7 @@ const RegistrationPage = () => {
     handleFieldError(
       setUsernameError,
       value,
-      "Tên người dùng của bạn quá dài. Độ dài tối đa là 20 ký tự."
+      "TÊN NGƯỜI DÙNG QUÁ DÀI. ĐỘ DÀI TỐI ĐA 20 KÍ TỰ."
     );
     handleChange(e);
   };
@@ -117,7 +118,7 @@ const RegistrationPage = () => {
     if (dayOfBirth && monthOfBirth && yearOfBirth && age >= 18) {
       return (
         <div className="leading-8">
-          <div >
+          <div>
             <label className="inline-flex items-center">
               <Checkbox
                 name="isTeacher"
@@ -169,7 +170,9 @@ const RegistrationPage = () => {
                 className={emailError ? "border-red-500" : ""}
               />
               {emailError && (
-                <p className="text-red-400 text-xs font-bold">{emailError}</p>
+                <p className="mt-2 text-red-400 text-xs font-bold">
+                  {emailError}
+                </p>
               )}
             </div>
           </div>
@@ -190,7 +193,9 @@ const RegistrationPage = () => {
               required
             />
             {usernameError && (
-              <p className="text-red-400 text-xs font-bold">{usernameError}</p>
+              <p className="mt-2 text-red-400 text-xs font-bold">
+                {usernameError}
+              </p>
             )}
           </div>
           <div className="mb-4">
@@ -208,7 +213,9 @@ const RegistrationPage = () => {
               required
             />
             {passwordError && (
-              <p className="text-red-400 text-xs font-bold">{passwordError}</p>
+              <p className="mt-2 text-red-400 text-xs font-bold">
+                {passwordError}
+              </p>
             )}
           </div>
           <div className="mb-4 ">
@@ -218,24 +225,28 @@ const RegistrationPage = () => {
             >
               Date of Birth
               <span
-                className="ml-1 text-gray-500 cursor-pointer"
+                className="ml-1 text-[#586380] cursor-pointer rounded-full p-1"
                 onMouseEnter={handleQuestionMarkHover}
                 onMouseLeave={handleQuestionMarkLeave}
               >
-                ?
+                <AiOutlineQuestionCircle fontSize={"18"} />
               </span>
             </label>
             {showTooltip && (
-              <p className="text-gray-600 text-xs">
-                Please enter your date of birth to determine your age.
+              <p className="w-auto h-auto text-xs bg-[#1a1d28] text-[#ffffff] rounded-r-lg p-8 fs-12 leading-8" >
+                Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung
+                cấp ngày sinh thật để tuân thủ luật lệ quốc gia
               </p>
             )}
             <div className="flex">
               <Select
-                className=" shadow appearance-none border roundedtext-gray-700 focus:outline-none focus:shadow-outline"
+                className=" shadow appearance-none border focus:outline-none focus:shadow-outline cursor-pointer hover:[#ffcd1f]"
                 name="dayOfBirth"
                 id="dayOfBirth"
                 placeholder="Ngày"
+                color={"#3ccfcf"}
+                fontSize={"14"}
+                fontWeight={"600"}
                 value={formData.dayOfBirth}
                 onChange={handleDateChange}
                 required
@@ -248,10 +259,13 @@ const RegistrationPage = () => {
               </Select>
 
               <Select
-                className="shadow appearance-none border rounded text-gray-700 focus:outline-none focus:shadow-outline "
+                className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline cursor-pointer"
                 name="monthOfBirth"
                 id="monthOfBirth"
                 placeholder="Tháng"
+                color={"#3ccfcf"}
+                fontSize={"14"}
+                fontWeight={"600"}
                 value={formData.monthOfBirth}
                 onChange={handleDateChange}
                 required
@@ -264,9 +278,12 @@ const RegistrationPage = () => {
               </Select>
 
               <Select
-                className="shadow appearance-none border rounded text-gray-700 focus:outline-none focus:shadow-outline"
-                name="yearOfBirth"
+                className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline cursor-pointer"
+                name="yearOfBirth" 
                 id="yearOfBirth"
+                color={"#3ccfcf"}
+                fontSize={"14"}
+                fontWeight={"600"}
                 placeholder="Năm"
                 value={formData.yearOfBirth}
                 onChange={handleDateChange}
@@ -281,7 +298,7 @@ const RegistrationPage = () => {
             </div>
           </div>
           {renderCheckboxes()}
-          <div className="mb-4 mt-5">
+          <div className="mb-4 mt-2 mb-3">
             <label className="inline-flex items-center">
               <Checkbox
                 name="termsAccepted"

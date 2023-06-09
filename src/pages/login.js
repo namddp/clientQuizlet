@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Img } from "@chakra-ui/react";
-import RegistrationPage from "./index";
+import RegistrationPage from "./RegistrationPage";
 import Image from "next/image";
 const login = () => {
   return (
@@ -12,7 +12,7 @@ const login = () => {
           alt="banner"
         />
       </div>
-      <div className="flex-1 h-full">
+      <div className="flex-1 h-full m-8 text-align-left">
         <Tabs isFitted variant="enclosed">
           <TabList mb="1em">
             <Tab>Đăng Nhập</Tab>

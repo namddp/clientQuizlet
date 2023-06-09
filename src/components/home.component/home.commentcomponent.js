@@ -39,7 +39,7 @@ export default function HomeComment() {
                   className="font-[700] leading-[24px] py-[30px]"
                   size="md"
                 >
-                  "{item.cmt}"
+                  {item.cmt}
                 </Heading>
                 <Text>{item.info}</Text>
               </CardBody>

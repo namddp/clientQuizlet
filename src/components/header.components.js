@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
+import { Input } from "@chakra-ui/react";
 
 export default function Header() {
   return (
-    <div className="bg-gray-200 py-2">
-      <header className="container mx-auto flex items-center justify-between py-0">
-        <div className="flex items-center space-x-4">
+    <div className="bg-gray-200 py-1">
+      <header className="container mx-auto flex items-center justify-center py-0">
+        <div className="flex items-center space-x-3">
           <Link href="/trangchu">
             <span className="text-lg font-bold text-green-500 m-2">logo</span>
           </Link>
@@ -23,19 +24,17 @@ export default function Header() {
           </nav>
         </div>
         <div className="flex-grow"></div>
-        <div className="w-2/3 space-x-1 flex items-center m-2">
-          <input
-            type="text"
-            placeholder="Tìm kiếm"
-            className="flex-grow px-2 py-2 border border-gray-300 rounded-full m-1"
-          />
+        <div className="flex items-center justify-center mx-auto">
+          <Input borderRadius="15px" placeholder="small size" size="sm" />
+        </div>
+        <div className="flex items-center m-2">
           <Link href="/login">
-            <button className="px-4 py-2 bg-gray-300 text-white rounded-full hover:bg-green-600 m-1">
+            <button className="px-7 py-2 bg-gray-300 text-white rounded-[10px] hover:bg-green-600 m-1">
               Đăng nhập
             </button>
           </Link>
           <Link href="/register">
-            <button className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 m-1">
+            <button className="px-7 py-2 bg-green-500 text-white rounded-[10px] hover:bg-green-600 m-1">
               Đăng ký
             </button>
           </Link>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Link, Input, Text, Select, Image } from "@chakra-ui/react";
-
+import { Button, Input, Text, Select, Checkbox } from "@chakra-ui/react";
+import GoogleLoginButton from "./api/auth/GoogleLoginButton";
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -19,6 +19,8 @@ const RegistrationPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const [termsError, setTermsError] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [hasSuccess, setHasSuccess] = useState(false);
 
   const handleChange = (e) => {
     const value =
@@ -40,11 +42,6 @@ const RegistrationPage = () => {
       return;
     }
     console.log(formData);
-  };
-
-  const handleSelectChange = (e) => {
-    const value = e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleEmailChange = (e) => {
@@ -119,29 +116,27 @@ const RegistrationPage = () => {
 
     if (dayOfBirth && monthOfBirth && yearOfBirth && age >= 18) {
       return (
-        <div>
-          <div>
+        <div className="leading-8">
+          <div >
             <label className="inline-flex items-center">
-              <input
-                type="checkbox"
+              <Checkbox
                 name="isTeacher"
                 checked={formData.isTeacher}
                 onChange={handleChange}
-                className="mr-2 leading-tight"
+                className="mr-2 "
               />
-              <span className="text-xs">I am a teacher</span>
+              <span className="text-sm">I am a teacher</span>
             </label>
           </div>
           <div>
             <label className="inline-flex items-center">
-              <input
-                type="checkbox"
+              <Checkbox
                 name="isStudent"
                 checked={formData.isStudent}
                 onChange={handleChange}
-                className="mr-2 leading-tight"
+                className="mr-2 "
               />
-              <span className="text-xs">I am a student</span>
+              <span className="text-sm">I am a student</span>
             </label>
           </div>
         </div>
@@ -152,14 +147,17 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div className="w-full h-full bg-red= flex">
-      {/* <Image className="w-[100vh] h-[100vh]" src="https://assets.quizlet.com/a/j/dist/app/i/signup/QZ_Auth_Light.f0832112f8d66a6.png" alt="banner"></Image> */}
+    <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
+          <div className="">
+            <GoogleLoginButton />
+          </div>
           <div className="mb-4">
             <Text as="em">EMAIL</Text>
             <div>
               <Input
+                width={"80vh"}
                 focusBorderColor={emailError ? "red" : "lime"}
                 placeholder="Enter your email"
                 type="email"
@@ -181,6 +179,7 @@ const RegistrationPage = () => {
             </div>
             <Input
               className={usernameError ? "border-red-500" : ""}
+              width={"80vh"}
               focusBorderColor={usernameError ? "red" : "lime"}
               type="text"
               name="username"
@@ -199,6 +198,7 @@ const RegistrationPage = () => {
             <Input
               className={passwordError ? "border-red-500" : ""}
               focusBorderColor={passwordError ? "red" : "lime"}
+              width={"80vh"}
               type="password"
               name="password"
               id="password"
@@ -211,7 +211,7 @@ const RegistrationPage = () => {
               <p className="text-red-400 text-xs font-bold">{passwordError}</p>
             )}
           </div>
-          <div className="mb-4">
+          <div className="mb-4 ">
             <label
               className="flex items-center text-gray-700 text-sm font-bold mb-2"
               htmlFor="dateOfBirth"
@@ -235,12 +235,11 @@ const RegistrationPage = () => {
                 className=" shadow appearance-none border roundedtext-gray-700 focus:outline-none focus:shadow-outline"
                 name="dayOfBirth"
                 id="dayOfBirth"
-                placeholder="Day"
+                placeholder="Ngày"
                 value={formData.dayOfBirth}
                 onChange={handleDateChange}
                 required
               >
-                <option value="">Day</option>
                 {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
                   <option key={day} value={day}>
                     {day}
@@ -252,12 +251,11 @@ const RegistrationPage = () => {
                 className="shadow appearance-none border rounded text-gray-700 focus:outline-none focus:shadow-outline "
                 name="monthOfBirth"
                 id="monthOfBirth"
-                placeholder="Month"
+                placeholder="Tháng"
                 value={formData.monthOfBirth}
                 onChange={handleDateChange}
                 required
               >
-                <option value="">Month</option>
                 {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
                   <option key={month} value={month}>
                     {month}
@@ -269,12 +267,11 @@ const RegistrationPage = () => {
                 className="shadow appearance-none border rounded text-gray-700 focus:outline-none focus:shadow-outline"
                 name="yearOfBirth"
                 id="yearOfBirth"
-                placeholder="Year"
+                placeholder="Năm"
                 value={formData.yearOfBirth}
                 onChange={handleDateChange}
                 required
               >
-                <option value="">Year</option>
                 {Array.from({ length: 124 }, (_, i) => 2023 - i).map((year) => (
                   <option key={year} value={year}>
                     {year}
@@ -284,17 +281,16 @@ const RegistrationPage = () => {
             </div>
           </div>
           {renderCheckboxes()}
-          <div className="mb-4">
+          <div className="mb-4 mt-5">
             <label className="inline-flex items-center">
-              <input
-                type="checkbox"
+              <Checkbox
                 name="termsAccepted"
                 checked={formData.termsAccepted}
                 onChange={handleChange}
                 className="mr-2 leading-tight"
                 required
               />
-              <span className="text-xs">
+              <span className="text-sm">
                 I have read and accept the Quizlets{" "}
                 <a
                   href="https://quizlet.com/tos"
@@ -321,13 +317,9 @@ const RegistrationPage = () => {
             )}
           </div>
           <div className="flex items-center justify-between">
-            {/* <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="submit"
-                >
-                  Register
-                </button> */}
-            <Button>Register</Button>
+            <Button colorScheme="blue" type="submit">
+              Register
+            </Button>
             <a
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               href="#"

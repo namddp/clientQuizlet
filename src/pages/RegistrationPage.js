@@ -2,26 +2,22 @@ import React, { useState } from "react";
 import { Button, Input, Text, Select, Checkbox } from "@chakra-ui/react";
 import GoogleLoginButton from "./api/auth/GoogleLoginButton";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
+import Email from "@/components/Register/Email";
+import User from "@/components/Register/User";
+import Password from "@/components/Register/Password";
+import Privacity from "@/components/Register/Privacy";
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    username: "",
-    password: "",
     dayOfBirth: "",
     monthOfBirth: "",
     yearOfBirth: "",
-    termsAccepted: false,
     isTeacher: false,
     isStudent: false,
   });
 
-  const [usernameError, setUsernameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [termsError, setTermsError] = useState("");
+  // const [termsError, setTermsError] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [hasSuccess, setHasSuccess] = useState(false);
+  const [termsError, setTermsError] = useState("");
 
   const handleChange = (e) => {
     const value =
@@ -45,52 +41,12 @@ const RegistrationPage = () => {
     console.log(formData);
   };
 
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-    if (!emailRegex.test(value)) {
-      setEmailError("ĐỊA CHỈ EMAIL KHÔNG HỢP LỆ.");
-    } else {
-      setEmailError("");
-    }
-    handleChange(e);
-  };
-
   const handleQuestionMarkHover = () => {
     setShowTooltip(true);
   };
 
   const handleQuestionMarkLeave = () => {
     setShowTooltip(false);
-  };
-
-  const handleFieldError = (field, value, errorMessage) => {
-    if (value.length > 20) {
-      field(errorMessage);
-    } else {
-      field("");
-    }
-  };
-
-  const handleUsernameChange = (e) => {
-    const value = e.target.value;
-    handleFieldError(
-      setUsernameError,
-      value,
-      "TÊN NGƯỜI DÙNG QUÁ DÀI. ĐỘ DÀI TỐI ĐA 20 KÍ TỰ."
-    );
-    handleChange(e);
-  };
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    if (value.length < 6) {
-      setPasswordError(
-        "MẬT KHẨU CỦA BẠN QUÁ NGẮN. ĐỘ DÀI TỐI THIỂU LÀ 6 KÝ TỰ"
-      );
-    } else {
-      setPasswordError("");
-    }
-    handleChange(e);
   };
 
   const calculateAge = () => {
@@ -150,75 +106,13 @@ const RegistrationPage = () => {
   return (
     <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
-        <form className="w-full max-w-md"
-         onSubmit={handleSubmit}>
+        <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <div className="">
             <GoogleLoginButton />
           </div>
-          <div className="mb-4">
-            <Text className="text-sm mb-2 text-[#939bb4] font-semibold ">EMAIL</Text>
-            <div>
-              <Input
-                width={"80vh"}
-                focusBorderColor={emailError ? "red" : "lime"}
-                placeholder="Enter your email"
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleEmailChange}
-                required
-                className={emailError ? "border-red-500" : ""}
-              />
-              {emailError && (
-                <p className="mt-2 text-red-400 text-xs font-bold">
-                  {emailError}
-                </p>
-              )}
-            </div>
-          </div>
-          <div className="mb-4">
-            <div className="text-sm mb-2 text-[#939bb4] font-semibold " htmlFor="username">
-              <Text >TÊN NGƯỜI DÙNG</Text>
-            </div>
-            <Input
-              className={usernameError ? "border-red-500" : ""}
-              width={"80vh"}
-              focusBorderColor={usernameError ? "red" : "lime"}
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Choose a username"
-              value={formData.username}
-              onChange={handleUsernameChange}
-              required
-            />
-            {usernameError && (
-              <p className="mt-2 text-red-400 text-xs font-bold">
-                {usernameError}
-              </p>
-            )}
-          </div>
-          <div className="mb-4">
-            <Text className="text-sm mb-2 text-[#939bb4] font-semibold " >MẬT KHẨU</Text>
-            <Input
-              className={passwordError ? "border-red-500" : ""}
-              focusBorderColor={passwordError ? "red" : "lime"}
-              width={"80vh"}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handlePasswordChange}
-              required
-            />
-            {passwordError && (
-              <p className="mt-2 text-red-400 text-xs font-bold">
-                {passwordError}
-              </p>
-            )}
-          </div>
+          <Email />
+          <User />
+          <Password />
           <div className="mb-4 ">
             <label
               className="flex items-center text-sm mb-2 text-[#939bb4] font-semibold"
@@ -277,7 +171,6 @@ const RegistrationPage = () => {
                   </option>
                 ))}
               </Select>
-
               <Select
                 className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline cursor-pointer"
                 name="yearOfBirth"
@@ -299,40 +192,8 @@ const RegistrationPage = () => {
             </div>
           </div>
           {renderCheckboxes()}
-          <div className="mb-4 mt-2 mb-3">
-            <label className="inline-flex items-center">
-              <Checkbox
-                name="termsAccepted"
-                checked={formData.termsAccepted}
-                onChange={handleChange}
-                className="mr-2 leading-tight"
-                required
-              />
-              <span className="text-sm">
-                I have read and accept the Quizlets{" "}
-                <a
-                  href="https://quizlet.com/tos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500"
-                >
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://quizlet.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500"
-                >
-                  Privacy Policy
-                </a>
-                .
-              </span>
-            </label>
-            {termsError && (
-              <p className="text-red-500 text-xs italic">{termsError}</p>
-            )}
+          <div className="mb-4 mt-2 mb-3 ">
+            <Privacity />
           </div>
           <div className="flex items-center justify-between">
             <Button colorScheme="blue" type="submit">

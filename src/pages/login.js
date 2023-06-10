@@ -5,16 +5,17 @@ import Image from "next/image";
 const login = () => {
   return (
     <div className="flex justify-center items-center h-screen w-screen">
-      <div className="w-1/2 h-full relative">
+      <div className=" w-1/2 h-full relative">
         <Image
           fill
           src="https://quizlet.com/_next/static/media/QZ_Auth_Light.18d3856e.png"
           alt="banner"
         />
       </div>
-      <div className="flex-1 h-full m-8 text-align-left fontVollkorn">
+      <div 
+      className="form-container flex-1 h-full m-8 text-align-left fontVollkorn ">
         <Tabs 
-        margin={"48px 26px 0px"}
+        margin={"30px 0px"}
         padding={"0px 32px"}
         variant="unstyled">
           <TabList className="fontVollkorn" mb="1em" >

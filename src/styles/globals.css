@@ -9,3 +9,8 @@
 .fontVollkorn {
   font-family: "Vollkorn", serif;
 }
+
+.form-container {
+  overflow-y: scroll; 
+  box-sizing: border-box; 
+}

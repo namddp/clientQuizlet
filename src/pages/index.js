@@ -1,16 +1,12 @@
 import React from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 
 export default function home() {
   return (
     <div>
-      <Header>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-      </Header>
+      <Header/>
+        
       <Footer />
     </div>
   );

@@ -12,11 +12,28 @@ const login = () => {
           alt="banner"
         />
       </div>
-      <div className="flex-1 h-full m-8 text-align-left">
-        <Tabs isFitted variant="enclosed">
-          <TabList mb="1em">
-            <Tab>Đăng Nhập</Tab>
-            <Tab>Đăng Kí</Tab>
+      <div className="flex-1 h-full m-8 text-align-left fontVollkorn">
+        <Tabs 
+        margin={"48px 26px 0px"}
+        padding={"0px 32px"}
+        variant="unstyled">
+          <TabList className="fontVollkorn" mb="1em" >
+            <Tab
+              color={"#939bb4"}
+              fontSize={"24"}
+              fontWeight={"700"}
+              _selected={{ color: " #2e3856" }}
+            >
+              Đăng Nhập
+            </Tab>
+            <Tab
+              color={"#939bb4"}
+              fontSize={"24"}
+              fontWeight={"700"}
+              _selected={{ color: "#2e3856"}}
+            >
+              Đăng Ký
+            </Tab>
           </TabList>
           <TabPanels>
             <TabPanel>

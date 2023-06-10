@@ -150,12 +150,13 @@ const RegistrationPage = () => {
   return (
     <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
-        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+        <form className="w-full max-w-md"
+         onSubmit={handleSubmit}>
           <div className="">
             <GoogleLoginButton />
           </div>
           <div className="mb-4">
-            <Text as="em">EMAIL</Text>
+            <Text className="text-sm mb-2 text-[#939bb4] font-semibold ">EMAIL</Text>
             <div>
               <Input
                 width={"80vh"}
@@ -177,8 +178,8 @@ const RegistrationPage = () => {
             </div>
           </div>
           <div className="mb-4">
-            <div className="bold text-gray-700" htmlFor="username">
-              <Text as="em">TÊN NGƯỜI DÙNG</Text>
+            <div className="text-sm mb-2 text-[#939bb4] font-semibold " htmlFor="username">
+              <Text >TÊN NGƯỜI DÙNG</Text>
             </div>
             <Input
               className={usernameError ? "border-red-500" : ""}
@@ -199,7 +200,7 @@ const RegistrationPage = () => {
             )}
           </div>
           <div className="mb-4">
-            <Text as="em">MẬT KHẨU</Text>
+            <Text className="text-sm mb-2 text-[#939bb4] font-semibold " >MẬT KHẨU</Text>
             <Input
               className={passwordError ? "border-red-500" : ""}
               focusBorderColor={passwordError ? "red" : "lime"}
@@ -220,10 +221,10 @@ const RegistrationPage = () => {
           </div>
           <div className="mb-4 ">
             <label
-              className="flex items-center text-gray-700 text-sm font-bold mb-2"
+              className="flex items-center text-sm mb-2 text-[#939bb4] font-semibold"
               htmlFor="dateOfBirth"
             >
-              Date of Birth
+              NGÀY SINH
               <span
                 className="ml-1 text-[#586380] cursor-pointer rounded-full p-1"
                 onMouseEnter={handleQuestionMarkHover}
@@ -233,7 +234,7 @@ const RegistrationPage = () => {
               </span>
             </label>
             {showTooltip && (
-              <p className="w-auto h-auto text-xs bg-[#1a1d28] text-[#ffffff] rounded-r-lg p-8 fs-12 leading-8" >
+              <p className="w-auto h-auto text-xs bg-[#1a1d28] text-[#ffffff] rounded-r-lg p-8 fs-12 leading-8">
                 Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung
                 cấp ngày sinh thật để tuân thủ luật lệ quốc gia
               </p>
@@ -279,7 +280,7 @@ const RegistrationPage = () => {
 
               <Select
                 className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline cursor-pointer"
-                name="yearOfBirth" 
+                name="yearOfBirth"
                 id="yearOfBirth"
                 color={"#3ccfcf"}
                 fontSize={"14"}

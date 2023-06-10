@@ -140,7 +140,6 @@ const Footer = () => {
   );
 };
 
-
 const LanguageSelector = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {

@@ -80,7 +80,7 @@ const BirthOfDate = () => {
     return null;
   };
   return (
-    <div className="mb-4">
+    <div className="mb-4 w-[50vh]">
       <label
         className="flex items-center text-sm mb-2 text-[#939bb4] font-semibold"
         htmlFor="dateOfBirth"

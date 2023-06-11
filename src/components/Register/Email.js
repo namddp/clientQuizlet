@@ -34,7 +34,7 @@ const Email = () => {
           value={formData.email}
           onChange={handleEmailChange}
           required
-          className={emailError ? "border-red-500" : ""}
+          className={emailError ? "border-red-500 border-3" : ""}
         />
         {emailError && (
           <p className="mt-2 text-red-400 text-xs font-bold">{emailError}</p>

@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { Checkbox } from "@chakra-ui/react";
+import Link from "next/link";
 
 const Privacity = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Privacity = () => {
     setFormData({ ...formData, [e.target.name]: value });
   };
   return (
-    <div className="w-auto">
+    <div className="w-[80vh]">
       <label className="inline-flex items-center">
         <Checkbox
           name="termsAccepted"
@@ -32,30 +33,30 @@ const Privacity = () => {
           required
         />
         <span className="text-base">
-         Tôi chấp nhận 
-          <a
+          Tôi chấp nhận
+          <Link
             href="https://quizlet.com/tos"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 ml-1 mr-1"
           >
-            Điều khoản dịch vụ 
-          </a>
-          và 
-          <a
+            Điều khoản dịch vụ
+          </Link>
+          và
+          <Link
             href="https://quizlet.com/privacy"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500  ml-1 mr-1"
+            className="text-blue-500 ml-1 mr-1"
           >
             Chính sách Quyền riêng tư
-          </a>
+          </Link>
           của Quizlets.
         </span>
       </label>
       {termsError && (
-              <p className="text-red-500 text-xs italic">{termsError}</p>
-            )}
+        <p className="text-red-500 text-xs italic">{termsError}</p>
+      )}
     </div>
   );
 };

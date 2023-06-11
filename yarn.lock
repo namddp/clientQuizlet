@@ -1658,6 +1658,11 @@
   "resolved" "https://registry.npmjs.org/@react-icons/all-files/-/all-files-4.1.0.tgz"
   "version" "4.1.0"
 
+"@remix-run/router@1.6.3":
+  "integrity" "sha512-EXJysQ7J3veRECd0kZFQwYYd5sJMcq2O/m60zu1W2l3oVQ9xtub8jTOtYRE0+M2iomyG/W3Ps7+vp2kna0C27Q=="
+  "resolved" "https://registry.npmjs.org/@remix-run/router/-/router-1.6.3.tgz"
+  "version" "1.6.3"
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.3.1.tgz#edbb85ff95f3be41eaa70c6d6ad6d8ba0a9c7e46"
@@ -3955,10 +3960,17 @@ react-clientside-effect@^1.2.6:
   dependencies:
     "@babel/runtime" "^7.12.13"
 
+<<<<<<< HEAD
 react-dom@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+=======
+"react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>=16.8", "react-dom@>=18", "react-dom@18.2.0":
+  "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
+  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
+  "version" "18.2.0"
+>>>>>>> cbe5177 (update)
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
@@ -4016,15 +4028,38 @@ react-remove-scroll@^2.5.5:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
+<<<<<<< HEAD
 react-style-singleton@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-2.2.1.tgz#f99e420492b2d8f34d38308ff660b60d0b1205b4"
   integrity sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==
+=======
+"react-router-dom@^6.12.1":
+  "integrity" "sha512-POIZN9UDKWwEDga054LvYr2KnK8V+0HR4Ny4Bwv8V7/FZCPxJgsCjYxXGxqxzHs7VBxMKZfgvtKhafuJkJSPGA=="
+  "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.12.1.tgz"
+  "version" "6.12.1"
+  dependencies:
+    "@remix-run/router" "1.6.3"
+    "react-router" "6.12.1"
+
+"react-router@6.12.1":
+  "integrity" "sha512-evd/GrKJOeOypD0JB9e1r7pQh2gWCsTbUfq059Wm1AFT/K2MNZuDo19lFtAgIhlBrp0MmpgpqtvZC7LPAs7vSw=="
+  "resolved" "https://registry.npmjs.org/react-router/-/react-router-6.12.1.tgz"
+  "version" "6.12.1"
+  dependencies:
+    "@remix-run/router" "1.6.3"
+
+"react-style-singleton@^2.2.1":
+  "integrity" "sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g=="
+  "resolved" "https://registry.npmjs.org/react-style-singleton/-/react-style-singleton-2.2.1.tgz"
+  "version" "2.2.1"
+>>>>>>> cbe5177 (update)
   dependencies:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
     tslib "^2.0.0"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 react@18.2.0:
   version "18.2.0"
@@ -4032,6 +4067,9 @@ react@18.2.0:
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
 =======
 "react@*", "react@^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16.8.0", "react@>=18", "react@18.2.0":
+=======
+"react@*", "react@^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16.8", "react@>=16.8.0", "react@>=18", "react@18.2.0":
+>>>>>>> cbe5177 (update)
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

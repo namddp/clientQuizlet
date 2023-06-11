@@ -8,30 +8,32 @@ const GoogleLoginBar = () => {
   };
 
   return (
-    <Flex>
-      <Box
-        // width={"auto"}
-        // height={"auto"}
-        marginBottom={"8"}
-        marginTop={"8"}
-        // backgroundColor={"black"}
-        
-      >
-        <Button
-          leftIcon={<FcGoogle />}
-          width={"80vh"}
-          lineHeight={"24"}
-          fontWeight={"600"}
-          color={"#586380"}
-          variant="outline"
-        //   backgroundColor={"red"}
-          onClick={handleGoogleLogin}
-        //   alignItems={"center"}
+    <div>
+      <Flex>
+        <Box
+          // width={"auto"}
+          // height={"auto"}
+          marginBottom={"8"}
+          marginTop={"8"}
+          // backgroundColor={"black"}
         >
-          Tiếp tục bằng Google
-        </Button>
-      </Box>
-    </Flex>
+          <Button
+            leftIcon={<FcGoogle />}
+            width={"80vh"}
+            lineHeight={"24"}
+            fontWeight={"600"}
+            color={"#586380"}
+            variant="outline"
+            //   backgroundColor={"red"}
+            onClick={handleGoogleLogin}
+            //   alignItems={"center"}
+          >
+            Tiếp tục bằng Google
+          </Button>
+        </Box>
+      </Flex>
+    
+    </div>
   );
 };
 

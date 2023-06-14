@@ -28,6 +28,8 @@ const Login = () => {
               required
               variant="flushed"
               placeContent="Nhập Email hoặc tên người dùng của bạn"
+              paddingLeft={"2"}
+              size = 'lg'
             />
             <p className="text-sm mt-2 text-[#939bb4] font-semibold ">EMAIL</p>
           </div>
@@ -42,6 +44,8 @@ const Login = () => {
               required
               variant="flushed"
               placeContent="Nhập mật khẩu"
+              paddingLeft={"2"}
+              size = 'lg'
             />
             <div className="flex justify-between mt-2 w-[80vh]">
               <p className="text-sm text-[#939bb4] font-semibold ">MẬT KHẨU</p>

@@ -35,6 +35,7 @@ const Email = () => {
           onChange={handleEmailChange}
           required
           className={emailError ? "border-red-500 border-3" : ""}
+          size='lg'
         />
         {emailError && (
           <p className="mt-2 text-red-400 text-xs font-bold">{emailError}</p>

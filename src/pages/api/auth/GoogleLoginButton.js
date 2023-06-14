@@ -27,6 +27,7 @@ const GoogleLoginBar = () => {
             //   backgroundColor={"red"}
             onClick={handleGoogleLogin}
             //   alignItems={"center"}
+            size = 'lg'
           >
             Tiếp tục bằng Google
           </Button>

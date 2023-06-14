@@ -27,7 +27,7 @@ const Login = () => {
               id="email"
               required
               variant="flushed"
-              placeholder="Nhập Email hoặc tên người dùng của bạn"
+              placeContent="Nhập Email hoặc tên người dùng của bạn"
             />
             <p className="text-sm mt-2 text-[#939bb4] font-semibold ">EMAIL</p>
           </div>
@@ -41,7 +41,7 @@ const Login = () => {
               id="password"
               required
               variant="flushed"
-              placeholder="Nhập mật khẩu"
+              placeContent="Nhập mật khẩu"
             />
             <div className="flex justify-between mt-2 w-[80vh]">
               <p className="text-sm text-[#939bb4] font-semibold ">MẬT KHẨU</p>

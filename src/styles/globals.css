@@ -5,3 +5,8 @@
 .css-r6z5ec {
   position: static !important;
 }
+
+.form-container {
+  overflow-y: scroll;
+  box-sizing: border-box;
+}

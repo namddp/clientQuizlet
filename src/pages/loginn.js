@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Img } from "@chakra-ui/react";
 import RegistrationPage from "./RegistrationPage";
 import Image from "next/image";
+import Login from "@/components/UserAuthen/Login/Login";
 const login = () => {
   return (
     <div className="flex justify-center items-center h-screen w-screen">
@@ -38,7 +39,7 @@ const login = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <p>one!</p>
+              <Login/>
             </TabPanel>
             <TabPanel>
               <RegistrationPage />

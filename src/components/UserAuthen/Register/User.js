@@ -42,7 +42,7 @@ const User = () => {
         type="text"
         name="username"
         id="username"
-        placeholder="Choose a username"
+        placeholder="mindx123"
         value={formData.username}
         onChange={handleUsernameChange}
         required

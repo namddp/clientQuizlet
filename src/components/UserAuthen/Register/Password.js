@@ -35,7 +35,7 @@ const Password = () => {
         type="password"
         name="password"
         id="password"
-        placeholder="Enter your password"
+        placeholder="Chọn mật khẩu cho bạn"
         value={formData.password}
         onChange={handlePasswordChange}
         required

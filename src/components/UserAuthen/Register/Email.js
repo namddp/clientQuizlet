@@ -27,7 +27,7 @@ const Email = () => {
         <Input
           width={"80vh"}
           focusBorderColor={emailError ? "red" : "lime"}
-          placeholder="Enter your email"
+          placeholder="user@quizlet.com"
           type="email"
           name="email"
           id="email"

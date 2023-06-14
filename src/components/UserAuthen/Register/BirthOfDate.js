@@ -106,7 +106,7 @@ const BirthOfDate = () => {
       )} */}
       <div className="flex mb-2 ">
         <Select
-          className=" shadow appearance-none border focus:outline-none focus:shadow-outline cursor-pointer hover:[#ffcd1f]"
+          className="shadow appearance-none border focus:outline-none focus:shadow-outline cursor-pointer hover:[#ffcd1f]"
           name="dayOfBirth"
           id="dayOfBirth"
           placeholder="Ngày"

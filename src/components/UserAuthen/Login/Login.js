@@ -2,20 +2,12 @@ import { React } from "react";
 import OptionsRegis from "../Register/OptionsRegis";
 import { Button, Input } from "@chakra-ui/react";
 import Link from "next/link";
+
 const Login = () => {
   return (
     <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
         <form className="w-full max-w-md">
-          {/* <div>
-          <GoogleLoginButton />
-        </div>
-        <div className="relative w-full ml-[10vh] mt-8 mb-8">
-          <hr className="w-full" />
-          <p className="absolute right-[40%] bottom-[0] bg-white text-[#939bb4] text-sm">
-            HOẶC EMAIL
-          </p>
-        </div> */}
           <OptionsRegis />
           <div className="mb-4">
             <Input
@@ -29,7 +21,7 @@ const Login = () => {
               variant="flushed"
               placeContent="Nhập Email hoặc tên người dùng của bạn"
               paddingLeft={"2"}
-              size = 'lg'
+              size="lg"
             />
             <p className="text-sm mt-2 text-[#939bb4] font-semibold ">EMAIL</p>
           </div>
@@ -45,7 +37,7 @@ const Login = () => {
               variant="flushed"
               placeContent="Nhập mật khẩu"
               paddingLeft={"2"}
-              size = 'lg'
+              size="lg"
             />
             <div className="flex justify-between mt-2 w-[80vh]">
               <p className="text-sm text-[#939bb4] font-semibold ">MẬT KHẨU</p>
@@ -80,7 +72,7 @@ const Login = () => {
               <p className="text-[#586380]">Mới sử dụng Quizlet?</p>
               <span>
                 <Link
-                  href="/login"
+                  href="/RegistrationPage"
                   className="text-[#3ccfcf] ml-1 mr-1 hover:text-yellow-300"
                 >
                   Tạo tài khoản

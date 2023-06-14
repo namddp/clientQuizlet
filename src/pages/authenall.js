@@ -1,13 +1,21 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Img } from "@chakra-ui/react";
-import RegistrationPage from "./RegistrationPage";
+import RegistrationPage from "@/components/UserAuthen/Register/RegistrationPage";
 import Image from "next/image";
 import Login from "@/components/UserAuthen/Login/Login";
-const login = () => {
+import { BrowserRouter,Link,Route,Switch } from "react-router-dom";
+const authenall = () => {
+  
   return (
+    
     <div className="flex justify-center items-center h-screen w-screen">
       <div className=" w-1/2 h-full relative">
-        <Image fill src="/images/auth_banner.webp" alt="banner" />
+        <Image
+          className="object-cover"
+          fill
+          src="/images/auth_banner.webp"
+          alt="banner"
+        />
       </div>
       <div className="form-container flex-1 h-full m-8 text-align-left fontVollkorn ">
         <Tabs margin={"30px 0px"} padding={"0px 32px"} variant="unstyled">
@@ -30,12 +38,12 @@ const login = () => {
             </Tab>
           </TabList>
           <TabPanels>
-            <TabPanel>
+            <TabPanel>  
               <Login />
             </TabPanel>
             <TabPanel>
               <RegistrationPage />
-            </TabPanel>
+            </TabPanel> 
           </TabPanels>
         </Tabs>
       </div>
@@ -43,4 +51,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default authenall;

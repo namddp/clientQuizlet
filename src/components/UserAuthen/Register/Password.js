@@ -39,6 +39,7 @@ const Password = () => {
         value={formData.password}
         onChange={handlePasswordChange}
         required
+        size='lg'
       />
       {passwordError && (
         <p className="mt-2 text-red-400 text-xs font-bold">{passwordError}</p>

@@ -46,6 +46,7 @@ const User = () => {
         value={formData.username}
         onChange={handleUsernameChange}
         required
+        size='lg'
       />
       {usernameError && (
         <p className="mt-2 text-red-400 text-xs font-bold">{usernameError}</p>

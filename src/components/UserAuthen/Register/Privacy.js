@@ -30,7 +30,10 @@ const Privacity = () => {
           checked={formData.termsAccepted}
           onChange={handleChange}
           className="mr-2 leading-tight"
+          marginTop={"2"}
+          marginBottom={"2"}
           required
+          size="lg"
         />
         <span className="text-base">
           Tôi chấp nhận

@@ -10,13 +10,26 @@ import {
   MenuItem,
   MenuList,
   Text,
+  Box,
+  CloseIcon,
 } from "@chakra-ui/react";
 import { CopyIcon, SmallAddIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 import Link from "next/link";
-
+import Authenall from "@/components/UserAuthen/authenall";
+import { GrClose } from "react-icons/Gr";
+import FullScreenComponent from "../UserAuthen/FullScreenComponent";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsFullScreen(true);
+  };
+
+  const handleClose = () => {
+    setIsFullScreen(false);
+  };
   return (
     <header
       className={classNames(
@@ -115,18 +128,26 @@ const Header = () => {
             </Menu>
           </div>
         </div>
-        <Button colorScheme="blue" variant="ghost">
-          Đăng nhập
-        </Button>
-        <Button
-          bg="#ffcd1f"
-          color="#282e3e"
-          _hover={{
-            bg: "#ffdc62",
-          }}
-        >
-          Đăng ký
-        </Button>
+        <div>
+          <Button
+            onClick={handleButtonClick}
+            colorScheme="blue"
+            variant="ghost"
+          >
+            Đăng nhập
+          </Button>
+          <Button
+            onClick={handleButtonClick}
+            bg="#ffcd1f"
+            color="#282e3e"
+            _hover={{
+              bg: "#ffdc62",
+            }}
+          >
+            Đăng ký
+          </Button>
+          {isFullScreen && <FullScreenComponent onClose={handleClose} />}
+        </div>
       </div>
     </header>
   );

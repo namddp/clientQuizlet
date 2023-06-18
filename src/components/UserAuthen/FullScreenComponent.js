@@ -28,7 +28,7 @@ const FullScreenComponent = ({ onClose }) => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        zIndex="9999"
+        zIndex="9 "
       >
         <motion.div
           initial="initial"
@@ -42,6 +42,7 @@ const FullScreenComponent = ({ onClose }) => {
               onClick={onClose}
               position="absolute"
               right="4%"
+              top ="4%"
               backgroundColor="white"
             >
               <GrClose />

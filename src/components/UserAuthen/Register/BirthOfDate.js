@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { Select, Checkbox, Tooltip, Button } from "@chakra-ui/react";
 
 const BirthOfDate = () => {
@@ -95,11 +94,11 @@ const BirthOfDate = () => {
             label=" Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung cấp
           ngày sinh thật để tuân thủ luật lệ quốc gia"
             placement="right-end"
+            className ="bg-red-500 "
           >
-            <Button 
-            size={"xs"}
-            marginLeft={"2"}
-            >?</Button>
+            <Button size={"xs"} marginLeft={"2"}>
+              ?
+            </Button>
           </Tooltip>
         </span>
       </label>

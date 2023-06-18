@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleLoginButton from "@/pages/api/auth/GoogleLoginButton";
+import GoogleLoginButton from "@/components/UserAuthen/auth/GoogleLoginButton";
 const OptionsRegis = () => {
   return (
     <div>

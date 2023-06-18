@@ -1,7 +1,14 @@
-export default function Home() {
+import React from "react";
+import HomeBanner from "@/components/home.component/home.bannercomponent";
+import HomeIntro from "@/components/home.component/home.introcomponent";
+import HomeComment from "@/components/home.component/home.commentcomponent";
+
+export default function home() {
   return (
-    <>
-      <h1>Hello Exam Client</h1>
-    </>
+    <div className="bg-[#f6f7fb]">
+      <HomeBanner />
+      <HomeIntro />
+      <HomeComment />
+    </div>
   );
 }

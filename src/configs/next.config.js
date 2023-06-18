@@ -1,5 +1,5 @@
-module.exports = {
-    images: {
-      domains: ['assets.quizlet.com'],
-    },
-  };
+mmodule.exports = {
+  images: {
+    domains: ["assets.quizlet.com"],
+  },
+};

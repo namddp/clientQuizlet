@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { Select, Checkbox } from "@chakra-ui/react";
+import { Select, Checkbox, Tooltip, Button } from "@chakra-ui/react";
 
 const BirthOfDate = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -90,23 +90,23 @@ const BirthOfDate = () => {
         htmlFor="dateOfBirth"
       >
         NGÀY SINH
-        <span
-          className="ml-1 text-[#586380] cursor-pointer rounded-full p-1"
-          onMouseEnter={handleQuestionMarkHover}
-          onMouseLeave={handleQuestionMarkLeave}
-        >
-          <AiOutlineQuestionCircle fontSize={"18"} />
+        <span>
+          <Tooltip
+            label=" Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung cấp
+          ngày sinh thật để tuân thủ luật lệ quốc gia"
+            placement="right-end"
+          >
+            <Button 
+            size={"xs"}
+            marginLeft={"2"}
+            >?</Button>
+          </Tooltip>
         </span>
       </label>
-      {/* {showTooltip && (
-        <p className="w-auto h-auto text-xs bg-[#1a1d28] text-[#ffffff] rounded-r-lg p-8 fs-12 leading-8">
-          Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung cấp
-          ngày sinh thật để tuân thủ luật lệ quốc gia
-        </p>
-      )} */}
+
       <div className="flex mb-2 ">
         <Select
-          className=" shadow appearance-none border focus:outline-none focus:shadow-outline cursor-pointer hover:[#ffcd1f]"
+          className="shadow appearance-none border focus:outline-none focus:shadow-outline cursor-pointer hover:[#ffcd1f]"
           name="dayOfBirth"
           id="dayOfBirth"
           placeholder="Ngày"

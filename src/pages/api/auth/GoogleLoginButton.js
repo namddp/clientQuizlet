@@ -1,6 +1,5 @@
 import { Button, Flex, Box, Text, Center } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
-
 const GoogleLoginBar = () => {
   const handleGoogleLogin = () => {
     // Thực hiện các xử lý đăng nhập bằng Google tại đây

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@chakra-ui/react";
-import GoogleLoginButton from "./api/auth/GoogleLoginButton";
+import GoogleLoginButton from "../../../pages/api/auth/GoogleLoginButton";
 import Email from "@/components/UserAuthen/Register/Email";
 import User from "@/components/UserAuthen/Register/User";
 import Password from "@/components/UserAuthen/Register/Password";
@@ -8,6 +8,7 @@ import Privacity from "@/components/UserAuthen/Register/Privacy";
 import BirthOfDate from "@/components/UserAuthen/Register/BirthOfDate";
 import Link from "next/link";
 import OptionsRegis from "@/components/UserAuthen/Register/OptionsRegis";
+import Login from "../Login/Login";
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({});
   const [termsError, setTermsError] = useState("");
@@ -41,21 +42,15 @@ const RegistrationPage = () => {
       data.termsAccepted
     );
   };
-
+  const oneClick = () => {
+    // Chuyển hướng tới component Login
+    window.location.href = "/login";
+  };
   return (
     <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
-          {/* <div>
-            <GoogleLoginButton />
-          </div>
-          <div className="relative w-full ml-[10vh] mt-8 mb-8">
-            <hr className="w-full" />
-            <p className="absolute right-[40%] bottom-[0] bg-white text-[#939bb4] text-sm">
-              HOẶC EMAIL
-            </p>
-          </div> */}
-          <OptionsRegis/>
+          <OptionsRegis />
           <Email onChange={handleFormChange} />
           <User onChange={handleFormChange} />
           <Password onChange={handleFormChange} />
@@ -77,8 +72,9 @@ const RegistrationPage = () => {
               <p className="text-[#586380]">Bạn đã có tài khoản rồi à?</p>
               <span>
                 <Link
-                  href="/login"         
-                  className="text-[#3ccfcf] ml-1 mr-1 hover:text-yellow-300"                
+                  onClick={oneClick}
+                  href=""
+                  className="text-[#3ccfcf] ml-1 mr-1 hover:text-yellow-300"
                 >
                   Đăng Nhập
                 </Link>

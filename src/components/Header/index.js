@@ -17,7 +17,6 @@ import { CopyIcon, SmallAddIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 import Link from "next/link";
 import Authenall from "@/components/UserAuthen/authenall";
-import { GrClose } from "react-icons/Gr";
 import FullScreenComponent from "../UserAuthen/FullScreenComponent";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

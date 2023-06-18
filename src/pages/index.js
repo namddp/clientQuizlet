@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Trangchu from "./trangchu";
+import HomeBanner from "@/components/home.component/home.bannercomponent";
+import HomeIntro from "@/components/home.component/home.introcomponent";
+import HomeComment from "@/components/home.component/home.commentcomponent";
 
 export default function home() {
   return (
     <div className="bg-[#f6f7fb]">
-      <Header />
-      <Trangchu />
-      <Footer />
+      <HomeBanner />
+      <HomeIntro />
+      <HomeComment />
     </div>
   );
 }

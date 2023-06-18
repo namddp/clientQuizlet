@@ -36,3 +36,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+<div className="flex mx-[119px] pt-[24px] ">
+      <div className="w-1/5 ">
+        <div className="ml-[100px] mr-[92px] ">
+          <FontAwesomeIcon
+            icon={faBookOpenReader}
+            className="w-[50px] h-[50px] text-[#f6f7fb]"
+          />
+        </div>
+        <div className="ml-[40px] mr-[20px] mt -[15px] text-center ">
+          <h1 className="text-[#f6f7fb]">Loại tài khoản</h1>
+        </div>
+      </div>
+      <div className="w-4/5">
+        <h1>
+          hiâffffffffffffffffffffffffffffffffffffffffffffffâsffffffffffffffffffff
+        </h1>
+      </div>
+    </div>

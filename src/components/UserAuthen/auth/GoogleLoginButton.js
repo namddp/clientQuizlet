@@ -59,15 +59,15 @@ const GoogleLoginBar = () => {
       });
   };
   const handleSignUp = () => {
-    if (
-      !formData.username ||
-      !formData.dayOfBirth ||
-      !formData.monthOfBirth ||
-      !formData.yearOfBirth
-    ) {
-      // Hiển thị thông báo lỗi hoặc thông báo yêu cầu điền đầy đủ thông tin
-      return;
-    }
+    // if (
+    //   !formData.username ||
+    //   !formData.dayOfBirth ||
+    //   !formData.monthOfBirth ||
+    //   !formData.yearOfBirth
+    // ) {
+    //   // Hiển thị thông báo lỗi hoặc thông báo yêu cầu điền đầy đủ thông tin
+    //   return;
+    // }
     // Xử lý logic đăng kí tại đây
     // Sau khi đăng kí thành công, bạn có thể chuyển hướng đến trang dashboard
     setIsRegistered(true);
@@ -132,8 +132,8 @@ const GoogleLoginBar = () => {
         <ModalContent
         // backgroundColor={"red.100"}
         >
-          <ModalHeader display={"flex"} alignSelf={"center"} marginBottom={"5"}>
-            Đăng kí
+          <ModalHeader display={"flex"} alignSelf={"center"} marginBottom={"3"}>
+            ĐĂNG KÝ
           </ModalHeader>
           <div className="ml-10">
             <BirthOfDate require />
@@ -141,7 +141,7 @@ const GoogleLoginBar = () => {
           </div>
 
           <ModalFooter display={"flex"} alignSelf={"center"}>
-            <Button width={"80vh"} colorScheme="blue" onClick={handleSignUp}>
+            <Button backgroundColor={"#3ccfcf"} width={"80vh"} colorScheme="blue" onClick={handleSignUp}>
               Đăng kí
             </Button>
           </ModalFooter>

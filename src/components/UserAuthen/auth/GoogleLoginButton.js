@@ -2,15 +2,11 @@ import {
   Button,
   Flex,
   Box,
-  Text,
-  Center,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalBody,
   ModalFooter,
-  Input,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
@@ -29,10 +25,15 @@ const GoogleLoginBar = () => {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
   const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const [isRegistered, setIsRegistered] = useState(false);
 
+  const [formData, setFormData] = useState({
+    username: "",
+    dayOfBirth: "",
+    monthOfBirth: "",
+    yearOfBirth: "",
+  });
   useEffect(() => {
     if (user && isRegistered) {
       // Người dùng đã đăng nhập và đã đăng kí thành công, chuyển hướng đến trang dashboard
@@ -58,10 +59,41 @@ const GoogleLoginBar = () => {
       });
   };
   const handleSignUp = () => {
+    if (
+      !formData.username ||
+      !formData.dayOfBirth ||
+      !formData.monthOfBirth ||
+      !formData.yearOfBirth
+    ) {
+      // Hiển thị thông báo lỗi hoặc thông báo yêu cầu điền đầy đủ thông tin
+      return;
+    }
     // Xử lý logic đăng kí tại đây
     // Sau khi đăng kí thành công, bạn có thể chuyển hướng đến trang dashboard
     setIsRegistered(true);
     setShowSignUpModal(false);
+  //   const database = getDatabase(app);
+  //   const usersRef = ref(database, "users");
+  //   const newUserRef = push(usersRef);
+  //   set(newUserRef, {
+  //     username: formData.username,
+  //     dayOfBirth: formData.dayOfBirth,
+  //     monthOfBirth: formData.monthOfBirth,
+  //     yearOfBirth: formData.yearOfBirth,
+  //   })
+  //     .then(() => {
+  //       // Đăng kí thành công và lưu thông tin người dùng
+  //       setIsRegistered(true);
+  //       setShowSignUpModal(false);
+  
+  //       // Chuyển hướng đến trang dashboard
+  //       router.push("/dashboard");
+  //     })
+  //     .catch((error) => {
+  //       // Xử lý lỗi khi lưu thông tin người dùng
+  //       console.log(error);
+  //     });
+  // };
   };
 
   return (
@@ -90,27 +122,26 @@ const GoogleLoginBar = () => {
           </Button>
         </Box>
       </Flex>
-      
       <Modal
         className="z-51"
+        size={"2xl"}
         isOpen={showSignUpModal}
         onClose={() => setShowSignUpModal(false)}
-        width="50vh"
       >
         <ModalOverlay />
-        <ModalContent 
-        backgroundColor={"red.100"}
-        width={"full"}
-        height={"50vh"}
+        <ModalContent
+        // backgroundColor={"red.100"}
         >
-          <ModalHeader>Đăng kí</ModalHeader>
-          <BirthOfDate />
-          <User />
-          <ModalFooter>
-            <Button variant="ghost" onClick={() => setShowSignUpModal(false)}>
-              Hủy
-            </Button>
-            <Button colorScheme="blue" onClick={handleSignUp}>
+          <ModalHeader display={"flex"} alignSelf={"center"} marginBottom={"5"}>
+            Đăng kí
+          </ModalHeader>
+          <div className="ml-10">
+            <BirthOfDate require />
+            <User />
+          </div>
+
+          <ModalFooter display={"flex"} alignSelf={"center"}>
+            <Button width={"80vh"} colorScheme="blue" onClick={handleSignUp}>
               Đăng kí
             </Button>
           </ModalFooter>

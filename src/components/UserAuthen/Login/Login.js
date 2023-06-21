@@ -1,7 +1,8 @@
-import { React } from "react";
+import { React, useState } from "react";
 import OptionsRegis from "../Register/OptionsRegis";
 import { Button, Input } from "@chakra-ui/react";
 import Link from "next/link";
+import RegistrationPage from "../Register/RegistrationPage";
 
 const Login = () => {
   return (
@@ -14,9 +15,9 @@ const Login = () => {
               focusBorderColor="#ffcd1f"
               width={"80vh"}
               placeholder="user@quizlet.com"
-              type="email"
-              name="email"
-              id="email"
+              // type="email"
+              // name="email"
+              // id="email"
               required
               variant="flushed"
               placeContent="Nhập Email hoặc tên người dùng của bạn"
@@ -71,12 +72,9 @@ const Login = () => {
             <div className=" flex justify-center mt-4 border-solid border-2 border-[#d9dde8]-300 font-semibold w-[80vh] p-2">
               <p className="text-[#586380]">Mới sử dụng Quizlet?</p>
               <span>
-                <Link
-                  href="/RegistrationPage"
-                  className="text-[#3ccfcf] ml-1 mr-1 hover:text-yellow-300"
-                >
+                <div className="text-[#3ccfcf] ml-1 mr-1 hover:text-yellow-300">
                   Tạo tài khoản
-                </Link>
+                </div>
               </span>
             </div>
           </div>

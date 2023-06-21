@@ -1,21 +1,31 @@
 import React, { useState, useCallback } from "react";
+import { useRouter } from "next/router";
 import {
   Box,
   Button,
   Input,
-  Radio,
-  RadioGroup,
-  Stack,
+  Checkbox,
   FormControl,
   FormLabel,
-  Alert,
-  AlertIcon,
-  AlertTitle,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogBody,
 } from "@chakra-ui/react";
-
+import { BsTrash } from "react-icons/bs";
 const QuizCreator = () => {
   const [questions, setQuestions] = useState([]);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [selectedText, setSelectedText] = useState("");
+  const [fontStyle, setFontStyle] = useState("normal");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [isAnswerComplete, setIsAnswerComplete] = useState(false); // Thêm biến trạng thái
+  const [deleteQuestionIndex, setDeleteQuestionIndex] = useState(null);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
   const handleQuestionChange = (event, questionIndex) => {
     const { name, value } = event.target;
     setQuestions((prevQuestions) => {
@@ -43,6 +53,14 @@ const QuizCreator = () => {
       };
       return updatedQuestions;
     });
+    setIsAnswerComplete(checkAnswerComplete());
+  };
+
+  const checkAnswerComplete = () => {
+    const hasIncompleteAnswer = questions.some((question) => {
+      return question.options.some((option) => option.trim() === "");
+    });
+    return !hasIncompleteAnswer;
   };
 
   const handleAddQuestion = () => {
@@ -57,21 +75,34 @@ const QuizCreator = () => {
   };
 
   const handleDeleteQuestion = (questionIndex) => {
-    setQuestions((prevQuestions) => {
-      const updatedQuestions = [...prevQuestions];
-      updatedQuestions.splice(questionIndex, 1);
-      return updatedQuestions;
-    });
+    setDeleteQuestionIndex(questionIndex);
+    setIsDeleteDialogOpen(true);
   };
 
+  const handleConfirmDelete = () => {
+    setQuestions((prevQuestions) => {
+      const updatedQuestions = [...prevQuestions];
+      updatedQuestions.splice(deleteQuestionIndex, 1);
+      return updatedQuestions;
+    });
+    setIsDeleteDialogOpen(false);
+  };
+  const handleCancelDelete = () => {
+    setIsDeleteDialogOpen(false);
+  };
   const handleDeleteOption = (questionIndex, optionIndex) => {
     setQuestions((prevQuestions) => {
       const updatedQuestions = [...prevQuestions];
       const question = JSON.parse(
         JSON.stringify(updatedQuestions[questionIndex])
       );
-      question.options.splice(optionIndex, 1);
-      updatedQuestions[questionIndex] = question;
+
+      // Check if the question will have at least one option after deletion
+      if (question.options.length > 1) {
+        question.options.splice(optionIndex, 1);
+        updatedQuestions[questionIndex] = question;
+      }
+
       return updatedQuestions;
     });
   };
@@ -98,57 +129,121 @@ const QuizCreator = () => {
   };
 
   const handleFinishQuiz = () => {
-    const hasMissingAnswer = questions.some(question => question.selectedOption === null);
+    const hasMissingAnswer = questions.some((question) => {
+      return (
+        question.selectedOption === null ||
+        question.selectedOption >= question.options.length
+      );
+    });
+
     if (hasMissingAnswer) {
       setIsAlertOpen(true);
     } else {
-      console.log(questions);
+      // Chuyển hướng đến trang xem lại
+      router.push({
+        pathname: "/review",
+        query: { questions: JSON.stringify(questions) },
+      });
     }
   };
-
   const handleCloseAlert = () => {
     setIsAlertOpen(false);
   };
+  const toggleFontStyle = (style) => {
+    if (fontStyle === style) {
+      setFontStyle("normal");
+    } else {
+      setFontStyle(style);
+    }
+  };
+  const router = useRouter();
 
   return (
-    <Box p={4}>
+    <Box p={4} ml={4}>
       <h2 className="text-2xl font-bold mb-4">Quiz Creator</h2>
-
       {questions.map((question, questionIndex) => (
         <Box key={questionIndex} mb={4}>
-          <h3 className="text-lg font-bold">Question {questionIndex + 1}</h3>
-          <Button
-            py={1}
-            px={2}
-            bg="red.500"
-            color="white"
-            rounded="md"
-            onClick={() => handleDeleteQuestion(questionIndex)}
-          >
-            Delete
-          </Button>
-          <FormControl mt={2}>
-            <FormLabel>Question:</FormLabel>
-            <Input
-              border="1px"
-              borderColor="gray.300"
+          <div className="text-lg font-bold">
+            Câu Hỏi {questionIndex + 1}
+            <Button
+              bg="red.500"
+              color="white"
               rounded="md"
-              px={2}
-              py={1}
-              mt={1}
-              type="text"
-              name="question"
-              value={question.question}
+              onClick={() => handleDeleteQuestion(questionIndex)}
+              ml={3}
+              mb={1}
+            >
+              Xóa Câu Hỏi
+            </Button>
+          </div>
+          <FormControl mt={2}>
+            <FormLabel>Tiêu đề :</FormLabel>
+            <Input
+              // ...
+              onFocus={() => {
+                setIsFocused(true);
+                setShowDropdown(true);
+              }}
+              onBlur={() => {
+                setTimeout(() => {
+                  setIsFocused(false);
+                  setShowDropdown(false);
+                }, 100);
+              }}
               onChange={(event) => handleQuestionChange(event, questionIndex)}
+              onMouseUp={() => {
+                const text = window.getSelection().toString();
+                setSelectedText(text);
+              }}
+              style={{
+                fontWeight: selectedText
+                  ? fontStyle === "bold"
+                    ? "bold"
+                    : "normal"
+                  : "normal",
+                fontStyle: selectedText
+                  ? fontStyle === "italic"
+                    ? "italic"
+                    : "normal"
+                  : "normal",
+              }}
             />
+            {selectedText && isFocused && (
+              <Box
+                position="absolute"
+                top="-10px"
+                left="10%"
+                transform="translateX(-50%)"
+                bg="white"
+                boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
+                borderRadius="md"
+                px={2}
+              >
+                <Button
+                  onClick={() => toggleFontStyle("bold")}
+                  variant={fontStyle === "bold" ? "solid" : "outline"}
+                  fontWeight="bold"
+                  mr={1}
+                  size={"sm"}
+                >
+                  B
+                </Button>
+                <Button
+                  onClick={() => toggleFontStyle("italic")}
+                  variant={fontStyle === "italic" ? "solid" : "outline"}
+                  fontStyle="italic"
+                  size={"sm"}
+                >
+                  I
+                </Button>
+              </Box>
+            )}
           </FormControl>
           <br />
           {question.options.map((option, optionIndex) => (
             <Box key={optionIndex} display="flex" alignItems="center" mt={2}>
               <FormControl mr={2}>
-                <FormLabel>
-                  Option {String.fromCharCode(65 + optionIndex)}:
-                </FormLabel>
+                <FormLabel>{String.fromCharCode(65 + optionIndex)}</FormLabel>
                 <Input
                   border="1px"
                   borderColor="gray.300"
@@ -163,27 +258,28 @@ const QuizCreator = () => {
                 />
               </FormControl>
               <Button
-                py={1}
-                px={2}
-                bg="red.500"
-                color="white"
+                // py={1}
+                // px={2}
+                mt={"8"}
+                // bg="red.500"
+                // color="white"
                 rounded="md"
                 onClick={() => handleDeleteOption(questionIndex, optionIndex)}
+                isDisabled={question.options.length === 1}
               >
-                Delete
+                <BsTrash size={"lg"} />
               </Button>
-              <FormControl ml={2}>
-                <FormLabel>Correct Option:</FormLabel>
-                <RadioGroup
-                  value={question.selectedOption}
+
+              <FormControl ml={2} mt={4}>
+                <FormLabel>Đáp Án Đúng</FormLabel>
+                <Checkbox
+                  isChecked={question.selectedOption === optionIndex}
                   onChange={() =>
                     handleCorrectOptionChange(questionIndex, optionIndex)
                   }
-                >
-                  <Stack direction="row">
-                    <Radio value={optionIndex} />
-                  </Stack>
-                </RadioGroup>
+                  size="lg"
+                  colorScheme="green"
+                ></Checkbox>
               </FormControl>
             </Box>
           ))}
@@ -196,7 +292,7 @@ const QuizCreator = () => {
             mt={2}
             onClick={() => handleAddOption(questionIndex)}
           >
-            Add Option
+            Thêm Đáp Án
           </Button>
         </Box>
       ))}
@@ -210,7 +306,7 @@ const QuizCreator = () => {
         mt={4}
         onClick={handleAddQuestion}
       >
-        Add
+        Thêm Câu Hỏi
       </Button>
 
       {questions.length > 0 && (
@@ -221,23 +317,48 @@ const QuizCreator = () => {
           color="white"
           rounded="md"
           mt={4}
+          ml={4}
           onClick={handleFinishQuiz}
         >
-          Finish
+          Hoàn Thành
         </Button>
       )}
-       <Alert status="error" mt={4} borderRadius="md" display={isAlertOpen ? 'block' : 'none'}>
-        <AlertIcon />
-        <AlertTitle>Vui lòng chọn đáp án đúng cho mỗi câu hỏi!</AlertTitle>
-        <Button
-          ml="auto"
-          variant="outline"
-          size="sm"
-          onClick={handleCloseAlert}
-        >
-          Đóng
-        </Button>
-      </Alert>
+      <AlertDialog isOpen={isAlertOpen} onClose={handleCloseAlert} isCentered>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg">
+              Vui lòng chọn đáp án đúng cho mỗi câu hỏi!
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <Button colorScheme="blue" onClick={handleCloseAlert}>
+                Đóng
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+      <AlertDialog
+        isOpen={isDeleteDialogOpen}
+        leastDestructiveRef={null}
+        onClose={handleCancelDelete}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Xác nhận xóa câu hỏi
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Bạn có chắc chắn muốn xóa câu hỏi này?
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button colorScheme="red" onClick={handleConfirmDelete} ml={3}>
+                Xóa
+              </Button>
+              <Button onClick={handleCancelDelete}>Hủy</Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </Box>
   );
 };

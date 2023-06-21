@@ -21,7 +21,7 @@ const FullScreenComponent = ({ onClose }) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      zIndex="50"
+      zIndex="999"
     >
  
         <motion.div

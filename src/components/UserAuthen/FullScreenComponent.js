@@ -9,27 +9,21 @@ const FullScreenComponent = ({ onClose }) => {
         opacity: 0,
         y: -100,
       },
-      animate: {
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 0.3,
-        },
-      },
-    };
-  
-    return (
-      <Box
-        position="fixed"
-        top="0"
-        left="0"
-        right="0"
-        bottom="0"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        zIndex="9 "
-      >
+  };
+
+  return (
+    <Box
+      position="fixed"
+      top="0"
+      left="0"
+      right="0"
+      bottom="0"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      zIndex="50"
+    >
+ 
         <motion.div
           initial="initial"
           animate="animate"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@chakra-ui/react";
-import GoogleLoginButton from "../../../pages/api/auth/GoogleLoginButton";
+import GoogleLoginButton from "../auth/GoogleLoginButton";
 import Email from "@/components/UserAuthen/Register/Email";
 import User from "@/components/UserAuthen/Register/User";
 import Password from "@/components/UserAuthen/Register/Password";

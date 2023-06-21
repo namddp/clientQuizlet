@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { getAuth, signOut } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import app from '../configs/firebase.config'
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { getAuth, signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import app from "@/configs/firebase.config";
 
 const auth = getAuth(app);
 
@@ -13,7 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!user) {
       // Người dùng chưa đăng nhập, chuyển hướng về trang đăng nhập
-      router.push('/');
+      router.push("/");
     }
   }, [user]);
 
@@ -21,7 +21,7 @@ const Dashboard = () => {
     signOut(auth)
       .then(() => {
         // Đăng xuất thành công, chuyển hướng về trang đăng nhập
-        router.push('/');
+        router.push("/");
       })
       .catch((error) => {
         // Xử lý lỗi đăng xuất

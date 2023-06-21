@@ -4,11 +4,18 @@ import Authenall from "@/components/UserAuthen/authenall";
 import { GrClose } from "react-icons/Gr";
 import { motion } from "framer-motion";
 const FullScreenComponent = ({ onClose }) => {
-    const variants = {
-      initial: {
-        opacity: 0,
-        y: -100,
+  const variants = {
+    initial: {
+      opacity: 0,
+      y: -100,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
       },
+    },
   };
 
   return (
@@ -21,29 +28,28 @@ const FullScreenComponent = ({ onClose }) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      zIndex="999"
+      zIndex="50"
     >
- 
-        <motion.div
-          initial="initial"
-          animate="animate"
-          variants={variants}
-          style={{ width: "100%", height: "100%" }}
-        >
-          <Box display="flex">
-            <Authenall />
-            <Button
-              onClick={onClose}
-              position="absolute"
-              right="4%"
-              top ="4%"
-              backgroundColor="white"
-            >
-              <GrClose />
-            </Button>
-          </Box>
-        </motion.div>
-      </Box>
-    );
-  };
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={variants}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Box display="flex">
+          <Authenall />
+          <Button
+            onClick={onClose}
+            position="absolute"
+            right="4%"
+            top="4%"
+            backgroundColor="white"
+          >
+            <GrClose />
+          </Button>
+        </Box>
+      </motion.div>
+    </Box>
+  );
+};
 export default FullScreenComponent;

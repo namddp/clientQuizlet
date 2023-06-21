@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import app from "../../../configs/firebase.config";
+import app from "@/configs/firebase.config";
 import BirthOfDate from "../Register/BirthOfDate";
 import { useState } from "react";
 import User from "../Register/User";
@@ -72,28 +72,28 @@ const GoogleLoginBar = () => {
     // Sau khi đăng kí thành công, bạn có thể chuyển hướng đến trang dashboard
     setIsRegistered(true);
     setShowSignUpModal(false);
-  //   const database = getDatabase(app);
-  //   const usersRef = ref(database, "users");
-  //   const newUserRef = push(usersRef);
-  //   set(newUserRef, {
-  //     username: formData.username,
-  //     dayOfBirth: formData.dayOfBirth,
-  //     monthOfBirth: formData.monthOfBirth,
-  //     yearOfBirth: formData.yearOfBirth,
-  //   })
-  //     .then(() => {
-  //       // Đăng kí thành công và lưu thông tin người dùng
-  //       setIsRegistered(true);
-  //       setShowSignUpModal(false);
-  
-  //       // Chuyển hướng đến trang dashboard
-  //       router.push("/dashboard");
-  //     })
-  //     .catch((error) => {
-  //       // Xử lý lỗi khi lưu thông tin người dùng
-  //       console.log(error);
-  //     });
-  // };
+    //   const database = getDatabase(app);
+    //   const usersRef = ref(database, "users");
+    //   const newUserRef = push(usersRef);
+    //   set(newUserRef, {
+    //     username: formData.username,
+    //     dayOfBirth: formData.dayOfBirth,
+    //     monthOfBirth: formData.monthOfBirth,
+    //     yearOfBirth: formData.yearOfBirth,
+    //   })
+    //     .then(() => {
+    //       // Đăng kí thành công và lưu thông tin người dùng
+    //       setIsRegistered(true);
+    //       setShowSignUpModal(false);
+
+    //       // Chuyển hướng đến trang dashboard
+    //       router.push("/dashboard");
+    //     })
+    //     .catch((error) => {
+    //       // Xử lý lỗi khi lưu thông tin người dùng
+    //       console.log(error);
+    //     });
+    // };
   };
 
   return (
@@ -141,7 +141,12 @@ const GoogleLoginBar = () => {
           </div>
 
           <ModalFooter display={"flex"} alignSelf={"center"}>
-            <Button backgroundColor={"#3ccfcf"} width={"80vh"} colorScheme="blue" onClick={handleSignUp}>
+            <Button
+              backgroundColor={"#3ccfcf"}
+              width={"80vh"}
+              colorScheme="blue"
+              onClick={handleSignUp}
+            >
               Đăng kí
             </Button>
           </ModalFooter>

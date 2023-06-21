@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAuth, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import app from "@/configs/firebase.config";
+import { app } from "@/configs/firebase.config";
 
 const auth = getAuth(app);
 

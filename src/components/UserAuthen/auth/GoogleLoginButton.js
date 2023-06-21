@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import app from "@/configs/firebase.config";
+import { app } from "@/configs/firebase.config";
 import BirthOfDate from "../Register/BirthOfDate";
 import { useState } from "react";
 import User from "../Register/User";

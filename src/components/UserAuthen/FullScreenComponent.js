@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Box, CloseIcon } from "@chakra-ui/react";
 import Authenall from "@/components/UserAuthen/authenall";
-import { GrClose } from "react-icons/Gr";
+import { GrClose } from "react-icons/gr";
 import { motion } from "framer-motion";
 const FullScreenComponent = ({ onClose }) => {
   const variants = {

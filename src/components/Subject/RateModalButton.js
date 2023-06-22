@@ -41,20 +41,19 @@ const RateModalButton = () => {
         <AnimatePresence>
           <motion.div
             className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-opacity-75"
-            style={{ backdropFilter: "blur(1px)" }}
-            initial={{ opacity: 0, y: "-80%" }}
-            animate={{ opacity: 1, y: "-20%" }}
-            exit={{ opacity: 0, y: "-100%" }}
+            style={{
+              backdropFilter: "blur(1px)",
+            }}
+            initial={{ opacity: 0, translateY: "-100%" }}
+            animate={{ opacity: 1, translateY: "0%" }}
+            exit={{ opacity: 0, translateY: "-100%" }}
             onClick={handleOutsideClick}
           >
             <motion.div
-              className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
+              className="absolute inset-0 flex items-center justify-center"
               id="modal-wrapper"
             >
-              <motion.div className="bg-[#2e3856] rounded-[15px] px-6 pt-6 w-[800px]">
+              <motion.div className="bg-[#2e3856] rounded-[15px] px-6 pt-6">
                 <div className="flex justify-end">
                   <FontAwesomeIcon
                     icon={faXmark}

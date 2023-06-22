@@ -1,6 +1,8 @@
 import ButtonShare from "./ButtonShare";
 import Image from "next/image";
-
+import Parameter from "./Parameter";
+import SelectForm from "./SelectButton";
+import FormLearning from "./FormLearning";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserGroup,
@@ -13,8 +15,7 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import RateModalButton from "@/components/Subject/RateModalButton";
-import Parameter from "./Parameter";
-import SelectForm from "./SelectForm";
+import SelectButton from "./SelectButton";
 
 export default function SubjectForm() {
   return (
@@ -99,7 +100,7 @@ export default function SubjectForm() {
               <Parameter />
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-[27px]">
             <div>
               <h1 className="text-[22px] font-semibold text-[#ff983a] mb-[10px]">
                 Đang học
@@ -111,8 +112,11 @@ export default function SubjectForm() {
               </div>
             </div>
             <div>
-              <SelectForm/>
+              <SelectButton />
             </div>
+          </div>
+          <div>
+            <FormLearning />
           </div>
         </div>
       </div>

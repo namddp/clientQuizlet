@@ -40,7 +40,7 @@ const RateModalButton = () => {
       {isOpen && (
         <AnimatePresence>
           <motion.div
-            className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-opacity-75"
+            className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-opacity-75 "
             style={{
               backdropFilter: "blur(1px)",
             }}
@@ -50,10 +50,10 @@ const RateModalButton = () => {
             onClick={handleOutsideClick}
           >
             <motion.div
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0 flex items-center justify-center "
               id="modal-wrapper"
             >
-              <motion.div className="bg-[#2e3856] rounded-[15px] px-6 pt-6">
+              <motion.div className="bg-[#2e3856] rounded-[15px] px-6 pt-6 w-[700px]">
                 <div className="flex justify-end">
                   <FontAwesomeIcon
                     icon={faXmark}
@@ -61,15 +61,8 @@ const RateModalButton = () => {
                     onClick={handleClose}
                   />
                 </div>
-                <h1 className="text-[#f6f7fb] text-3xl font-bold mb-4">
-                  Bạn đánh giá học phần này thế nào?
-                </h1>
+
                 <StarRating />
-                <div className="flex justify-end items-center border-t border-black mt-8 h-20">
-                  <div className="bg-[#586380] text-white px-4 py-2 rounded-md">
-                    Gửi
-                  </div>
-                </div>
               </motion.div>
             </motion.div>
           </motion.div>

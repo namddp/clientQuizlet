@@ -4,8 +4,8 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverArrow,
   PopoverBody,
+  PopoverArrow,
   Box,
 } from "@chakra-ui/react";
 

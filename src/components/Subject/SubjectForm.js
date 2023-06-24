@@ -1,7 +1,7 @@
 import ButtonShare from "./ButtonShare";
 import Image from "next/image";
 import Parameter from "./Parameter";
-import SelectForm from "./SelectButton";
+
 import FormLearning from "./FormLearning";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

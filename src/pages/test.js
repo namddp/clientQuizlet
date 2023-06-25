@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { BsTrash } from "react-icons/bs";
 const QuizCreator = () => {
+
   const [questions, setQuestions] = useState([]);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);

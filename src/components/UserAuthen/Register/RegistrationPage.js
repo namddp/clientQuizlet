@@ -18,7 +18,7 @@ const RegistrationPage = () => {
     e.preventDefault();
     if (!formData.termsAccepted) {
       setTermsError(
-        "PLEASE ACCEPT THE QUIZLET'S TERMS OF SERVICE AND PRIVACY POLICY TO CONTINUE."
+        "Vui lòng chấp nhận Điều khoản dịch vụ và Chính sách Quyền riêng tư của Quizlets để tiếp tục."
       );
       return;
     }
@@ -42,6 +42,7 @@ const RegistrationPage = () => {
       data.termsAccepted
     );
   };
+
   const oneClick = () => {
     // Chuyển hướng tới component Login
     window.location.href = "/login";

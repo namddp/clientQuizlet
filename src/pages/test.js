@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { BsTrash } from "react-icons/bs";
 const QuizCreator = () => {
+
   const [questions, setQuestions] = useState([]);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -196,16 +197,8 @@ const QuizCreator = () => {
                 setSelectedText(text);
               }}
               style={{
-                fontWeight: selectedText
-                  ? fontStyle === "bold"
-                    ? "bold"
-                    : "normal"
-                  : "normal",
-                fontStyle: selectedText
-                  ? fontStyle === "italic"
-                    ? "italic"
-                    : "normal"
-                  : "normal",
+                fontWeight: selectedText ? (fontStyle === "bold" ? "bold" : "normal") : "normal",
+                fontStyle: selectedText ? (fontStyle === "italic" ? "italic" : "normal") : "normal",
               }}
             />
             {selectedText && isFocused && (

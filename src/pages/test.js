@@ -56,13 +56,16 @@ const QuizCreator = () => {
     });
     setIsAnswerComplete(checkAnswerComplete());
   };
-
+  
+  
   const checkAnswerComplete = () => {
     const hasIncompleteAnswer = questions.some((question) => {
       return question.options.some((option) => option.trim() === "");
     });
     return !hasIncompleteAnswer;
   };
+  
+  
 
   const handleAddQuestion = () => {
     setQuestions((prevQuestions) => [
@@ -118,6 +121,7 @@ const QuizCreator = () => {
     });
   }, []);
 
+  
   const handleCorrectOptionChange = (questionIndex, optionIndex) => {
     setQuestions((prevQuestions) => {
       const updatedQuestions = [...prevQuestions];

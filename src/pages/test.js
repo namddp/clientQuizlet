@@ -16,7 +16,6 @@ import {
 } from "@chakra-ui/react";
 import { BsTrash } from "react-icons/bs";
 const QuizCreator = () => {
-
   const [questions, setQuestions] = useState([]);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -56,16 +55,13 @@ const QuizCreator = () => {
     });
     setIsAnswerComplete(checkAnswerComplete());
   };
-  
-  
+
   const checkAnswerComplete = () => {
     const hasIncompleteAnswer = questions.some((question) => {
       return question.options.some((option) => option.trim() === "");
     });
     return !hasIncompleteAnswer;
   };
-  
-  
 
   const handleAddQuestion = () => {
     setQuestions((prevQuestions) => [
@@ -121,7 +117,6 @@ const QuizCreator = () => {
     });
   }, []);
 
-  
   const handleCorrectOptionChange = (questionIndex, optionIndex) => {
     setQuestions((prevQuestions) => {
       const updatedQuestions = [...prevQuestions];

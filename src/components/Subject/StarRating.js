@@ -27,6 +27,7 @@ const StarRating = () => {
   const handleFocus = (index) => {
     setFocusedStar(index);
     setShowDiv(true);
+    handleDisable();
   };
 
   const handleLeave = () => {
@@ -64,7 +65,6 @@ const StarRating = () => {
             onMouseLeave={handleLeave}
             onFocus={() => handleFocus(index)}
             tabIndex={0}
-            onClick={handleDisable}
           >
             ★
           </motion.div>
@@ -121,7 +121,7 @@ const StarRating = () => {
               </h5>
             )}
           </div>
-          {inputComplain && (
+          {inputComplain && rating <= 3 && (
             <div className="mt-[15px]">
               <Input
                 variant="outline"

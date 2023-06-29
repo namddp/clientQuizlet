@@ -2,7 +2,6 @@ import ButtonShare from "./ButtonShare";
 import Image from "next/image";
 import Parameter from "./Parameter";
 
-import FormLearning from "./FormLearning";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserGroup,
@@ -15,7 +14,8 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import RateModalButton from "@/components/Subject/RateModalButton";
-import SelectButton from "./SelectButton";
+
+import LearningPage from "./LearningItem";
 
 export default function SubjectForm() {
   return (
@@ -100,23 +100,8 @@ export default function SubjectForm() {
               <Parameter />
             </div>
           </div>
-          <div className="flex justify-between items-center mb-[27px]">
-            <div>
-              <h1 className="text-[22px] font-semibold text-[#ff983a] mb-[10px]">
-                Đang học
-              </h1>
-              <div>
-                <span>
-                  Bạn đã bắt đầu học những thuật ngữ này. Tiếp tục phát huy nhé!
-                </span>
-              </div>
-            </div>
-            <div>
-              <SelectButton />
-            </div>
-          </div>
           <div>
-            <FormLearning />
+            <LearningPage />
           </div>
         </div>
       </div>

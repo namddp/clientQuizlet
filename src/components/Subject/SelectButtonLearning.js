@@ -2,13 +2,7 @@ import React from "react";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function SelectButton() {
-  const [isSelected, setSelected] = React.useState(false);
-
-  const handleSelect = () => {
-    setSelected(!isSelected);
-  };
-
+export default function SelectButtonLearning({ isSelected, handleSelect }) {
   return (
     <div className="flex">
       {!isSelected && (
@@ -29,7 +23,7 @@ export default function SelectButton() {
           onClick={handleSelect}
         >
           <FontAwesomeIcon icon={faStar} className="text-[10px]" />
-          <h1 className="ml-[8px] font-semibold text-[15px] text-[#1a1d28] hover:cursor-pointer ">
+          <h1 className="ml-[8px] font-semibold text-[15px] text-[#1a1d28] hover:cursor-pointer">
             Bỏ Chọn
           </h1>
         </div>

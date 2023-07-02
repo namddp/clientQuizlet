@@ -9,10 +9,25 @@ import DateOfBirth from "@/components/UserAuthen/Register/DateOfBirth";
 import Link from "next/link";
 import OptionsRegis from "@/components/UserAuthen/Register/OptionsRegis";
 import Login from "../Login/Login";
+
 const RegistrationPage = () => {
-  const [formData, setFormData] = useState({});
+
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    password: '',
+    dateOfBirth: '',
+  });
   const [termsError, setTermsError] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  
+  const handleFormChange = (keyName, value) => {
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        [keyName]: value,
+    }));
+    // setIsFormValid(validateForm(newFormData));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +40,6 @@ const RegistrationPage = () => {
     console.log(formData);
   };
 
-  const handleFormChange = (newFormData) => {
-    setFormData(newFormData);
-    setIsFormValid(validateForm(newFormData));
-  };
 
   const validateForm = (data) => {
     // Add your form validation logic here
@@ -42,7 +53,7 @@ const RegistrationPage = () => {
       data.termsAccepted
     );
   };
-  const oneClick = () => {
+  const onClick = () => {
     // Chuyển hướng tới component Login
     window.location.href = "/login";
   };
@@ -51,8 +62,8 @@ const RegistrationPage = () => {
       <div className="flex justify-center items-center h-full">
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <OptionsRegis />
-          <Email onChange={handleFormChange} />
-          <Username onChange={handleFormChange} />
+          <Email onChange={(value) => handleFormChange("email", value)} />
+          <Username onChange={(value) => handleFormChange("username", value)} />
           <Password onChange={handleFormChange} />
           <DateOfBirth onChange={handleFormChange} />
           <div className="mb-4">
@@ -72,7 +83,7 @@ const RegistrationPage = () => {
               <p className="text-[#586380]">Bạn đã có tài khoản rồi à?</p>
               <span>
                 <Link
-                  onClick={oneClick}
+                  onClick={onClick}
                   href=""
                   className="text-[#3ccfcf] ml-1 mr-1 hover:text-yellow-300"
                 >

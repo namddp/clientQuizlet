@@ -1,15 +1,19 @@
 import { React, useState } from "react";
 import { Text, Input } from "@chakra-ui/react";
-const Email = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-  });
-  const handleChange = (e) => {
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
+
+const Email = ({onChange}) => {
+
+  const [email, setEmail] = useState("")
+  const [emailError, setEmailError] = useState("");
+
+  // hàm để xử lý email trong form đăng ký ở RegistrationPage (component cha)
+  const handleEmailData = (e) => {
+    const value = e.target.value;
+    onChange(value);
   };
-  const handleEmailChange = (e) => {
+
+  // hàm để xử lý input change ở component Email
+  const handleEmailInput = (e) => {
     const value = e.target.value;
     const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (!emailRegex.test(value)) {
@@ -17,9 +21,10 @@ const Email = () => {
     } else {
       setEmailError("");
     }
-    handleChange(e);
+    setEmail(value);
+    handleEmailData(e);
   };
-  const [emailError, setEmailError] = useState("");
+
   return (
     <div className="mb-4">
       <Text className="text-sm mb-2 text-[#939bb4] font-semibold ">EMAIL</Text>
@@ -31,8 +36,8 @@ const Email = () => {
           type="email"
           name="email"
           id="email"
-          value={formData.email}
-          onChange={handleEmailChange}
+          value= {email}
+          onChange={handleEmailInput}
           required
           className={emailError ? "border-red-500 border-3" : ""}
           size='lg'

@@ -1,7 +1,8 @@
 import { React, useState } from "react";
-import { Text, Input } from "@chakra-ui/react";
+import { Text, Input, useShortcut } from "@chakra-ui/react";
 
-const Username = () => {
+const Username = ({ onChange }) => {
+  const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [formData, setFormData] = useState({
     username: "",

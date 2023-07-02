@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Select, Checkbox, Tooltip, Button } from "@chakra-ui/react";
 
-const BirthOfDate = () => {
+const DateOfBirth = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [termsError, setTermsError] = useState("");
 
@@ -167,4 +167,4 @@ const BirthOfDate = () => {
   );
 };
 
-export default BirthOfDate;
+export default DateOfBirth;

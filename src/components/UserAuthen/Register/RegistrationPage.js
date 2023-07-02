@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Button } from "@chakra-ui/react";
 import GoogleLoginButton from "../auth/GoogleLoginButton";
 import Email from "@/components/UserAuthen/Register/Email";
-import User from "@/components/UserAuthen/Register/User";
+import Username from "@/components/UserAuthen/Register/Username";
 import Password from "@/components/UserAuthen/Register/Password";
 import Privacity from "@/components/UserAuthen/Register/Privacy";
-import BirthOfDate from "@/components/UserAuthen/Register/BirthOfDate";
+import DateOfBirth from "@/components/UserAuthen/Register/DateOfBirth";
 import Link from "next/link";
 import OptionsRegis from "@/components/UserAuthen/Register/OptionsRegis";
 import Login from "../Login/Login";
@@ -18,7 +18,7 @@ const RegistrationPage = () => {
     e.preventDefault();
     if (!formData.termsAccepted) {
       setTermsError(
-        "Vui lòng chấp nhận Điều khoản dịch vụ và Chính sách Quyền riêng tư của Quizlets để tiếp tục."
+        "PLEASE ACCEPT THE QUIZLET'S TERMS OF SERVICE AND PRIVACY POLICY TO CONTINUE."
       );
       return;
     }
@@ -38,11 +38,10 @@ const RegistrationPage = () => {
       data.email &&
       data.user &&
       data.password &&
-      data.birthOfDate &&
+      data.dateOfBirth &&
       data.termsAccepted
     );
   };
-
   const oneClick = () => {
     // Chuyển hướng tới component Login
     window.location.href = "/login";
@@ -53,9 +52,9 @@ const RegistrationPage = () => {
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <OptionsRegis />
           <Email onChange={handleFormChange} />
-          <User onChange={handleFormChange} />
+          <Username onChange={handleFormChange} />
           <Password onChange={handleFormChange} />
-          <BirthOfDate onChange={handleFormChange} />
+          <DateOfBirth onChange={handleFormChange} />
           <div className="mb-4">
             <Privacity onChange={handleFormChange} />
           </div>

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Text, Input } from "@chakra-ui/react";
 
-const User = () => {
+const Username = () => {
   const [usernameError, setUsernameError] = useState("");
   const [formData, setFormData] = useState({
     username: "",
@@ -55,4 +55,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Username;

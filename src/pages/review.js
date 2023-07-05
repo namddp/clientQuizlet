@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Box, Text, Checkbox, Stack } from "@chakra-ui/react";
+import { Box, Text, Checkbox, Stack, Image, Heading } from "@chakra-ui/react";
 
 const Review = () => {
   const router = useRouter();
@@ -15,12 +15,25 @@ const Review = () => {
 
   return (
     <Box p={4}>
-      <h2>Review Questions</h2>
+      <Heading>Review Questions</Heading>
       {parsedQuestions.map((question, questionIndex) => (
         <Box key={questionIndex} mt={4}>
-          <h3>Câu Hỏi {questionIndex + 1}</h3>
+          <Heading as="h1" size="sm">
+            Câu Hỏi {questionIndex + 1}
+          </Heading>
           <Text>{question.question}</Text>
-          <Stack spacing={2} mt={2}>
+          {question.imageDataURL && (
+            <Box marginTop={4}>
+              <Image
+                src={question.imageDataURL}
+                alt="Hình ảnh câu hỏi"
+                width={"50%"}
+                height={"50%"}
+                objectFit="contain"
+              />
+            </Box>
+          )}
+          <Stack spacing={2} marginTop={4}>
             {question.options.map((option, optionIndex) => (
               <Checkbox
                 key={optionIndex}

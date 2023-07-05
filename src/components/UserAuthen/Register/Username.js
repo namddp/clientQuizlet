@@ -1,32 +1,30 @@
 import { React, useState } from "react";
-import { Text, Input } from "@chakra-ui/react";
+import { Text, Input, useShortcut } from "@chakra-ui/react";
 
-const User = () => {
+const Username = ({ username, onChange }) => {
+
   const [usernameError, setUsernameError] = useState("");
-  const [formData, setFormData] = useState({
-    username: "",
-  });
-  const handleChange = (e) => {
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
+
+  // hàm để cập nhật username trong form đăng ký ở RegistrationPage (component cha)
+  const updateRegistrationData = (e) => {
+    const value = e.target.value;
+    onChange("username", value);
   };
+
+  // hàm để xử lý input change ở field Username
   const handleUsernameChange = (e) => {
     const value = e.target.value;
-    handleFieldError(
-      setUsernameError,
-      value,
-      "TÊN NGƯỜI DÙNG QUÁ DÀI. ĐỘ DÀI TỐI ĐA 20 KÍ TỰ."
-    );
-    handleChange(e);
-  };
-  const handleFieldError = (field, value, errorMessage) => {
+
     if (value.length > 20) {
-      field(errorMessage);
+      setUsernameError(
+        "TÊN NGƯỜI DÙNG QUÁ DÀI. ĐỘ DÀI TỐI ĐA LÀ 20 KÝ TỰ"
+      );
     } else {
-      field("");
+      setUsernameError("");
     }
+    updateRegistrationData(e);
   };
+
   return (
     <div className="mb-4">
       <div
@@ -43,7 +41,7 @@ const User = () => {
         name="username"
         id="username"
         placeholder="mindx123"
-        value={formData.username}
+        value={username}
         onChange={handleUsernameChange}
         required
         size='lg'
@@ -55,4 +53,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Username;

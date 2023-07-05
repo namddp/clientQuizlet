@@ -14,9 +14,9 @@ import { useRouter } from "next/router";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { app } from "@/configs/firebase.config";
-import BirthOfDate from "../Register/BirthOfDate";
+import BirthOfDate from "../Register/DateOfBirth";
 import { useState } from "react";
-import User from "../Register/User";
+import User from "../Register/Username";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);

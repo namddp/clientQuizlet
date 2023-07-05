@@ -11,7 +11,6 @@ import {
   faHardDrive,
   faCopy,
   faEllipsis,
-  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import RateModalButton from "@/components/Subject/RateModalButton";
 

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import {
   Box,
@@ -13,11 +13,8 @@ import {
   AlertDialogHeader,
   AlertDialogFooter,
   AlertDialogBody,
-  Heading, 
-  Text
 } from "@chakra-ui/react";
 import { BsTrash } from "react-icons/bs";
-import Image from "next/image";
 const QuizCreator = () => {
   const [questions, setQuestions] = useState([]);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -76,11 +73,6 @@ const QuizCreator = () => {
       },
     ]);
   };
-  const initialQuestion = {
-    question: "",
-    answer: "",
-    imagePath: "", // Khởi tạo trường imagePath rỗng
-  };
 
   const handleDeleteQuestion = (questionIndex) => {
     setDeleteQuestionIndex(questionIndex);
@@ -135,28 +127,6 @@ const QuizCreator = () => {
       return updatedQuestions;
     });
   };
-  const handleImageUpload = (event, questionIndex) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const imageDataURL = reader.result;
-
-      setQuestions((prevQuestions) => {
-        const updatedQuestions = [...prevQuestions];
-        updatedQuestions[questionIndex] = {
-          ...updatedQuestions[questionIndex],
-          imageFile: file,
-          imageDataURL: imageDataURL,
-        };
-        return updatedQuestions;
-      });
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleFinishQuiz = () => {
     const hasMissingAnswer = questions.some((question) => {
@@ -169,6 +139,7 @@ const QuizCreator = () => {
     if (hasMissingAnswer) {
       setIsAlertOpen(true);
     } else {
+      // Chuyển hướng đến trang xem lại
       router.push({
         pathname: "/review",
         query: { questions: JSON.stringify(questions) },
@@ -186,35 +157,9 @@ const QuizCreator = () => {
     }
   };
   const router = useRouter();
-  const [questionData, setQuestionData] = useState(null);
 
-  useEffect(() => {
-    const questionDataString = localStorage.getItem("questionData");
-    if (questionDataString) {
-      const parsedQuestionData = JSON.parse(questionDataString);
-      setQuestionData(parsedQuestionData);
-    }
-  }, []);
   return (
     <Box p={4} ml={4}>
-      <Box maxW="md" mx="auto" p={6}>
-      
-      {questionData ? (
-        <Box bg="gray.100" p={4} borderRadius="md">
-          <Text>
-            <strong>Tiêu đề:</strong> {questionData.title}
-          </Text>
-          <Text>
-            <strong>Môn học:</strong> {questionData.subject}
-          </Text>
-          <Text>
-            <strong>Câu hỏi:</strong> {questionData.question}
-          </Text>
-        </Box>
-      ) : (
-        <Text>Không có dữ liệu câu hỏi.</Text>
-      )}
-    </Box>
       <h2 className="text-2xl font-bold mb-4">Quiz Creator</h2>
       {questions.map((question, questionIndex) => (
         <Box key={questionIndex} mb={4}>
@@ -230,13 +175,6 @@ const QuizCreator = () => {
             >
               Xóa Câu Hỏi
             </Button>
-            <Input
-              marginLeft={4}
-              size={"sm"}
-              width={200}
-              type="file"
-              onChange={(event) => handleImageUpload(event, questionIndex)}
-            />
           </div>
           <FormControl mt={2}>
             <FormLabel>Tiêu đề :</FormLabel>
@@ -298,16 +236,6 @@ const QuizCreator = () => {
                 >
                   I
                 </Button>
-              </Box>
-            )}
-            {question.imageDataURL && (
-              <Box marginTop={4}>
-                <Image
-                  src={question.imageDataURL}
-                  alt="Hình ảnh câu hỏi"
-                  width={500}
-                  height={500}
-                />
               </Box>
             )}
           </FormControl>
@@ -392,7 +320,7 @@ const QuizCreator = () => {
           ml={4}
           onClick={handleFinishQuiz}
         >
-          Xem Trước
+          Hoàn Thành
         </Button>
       )}
       <AlertDialog isOpen={isAlertOpen} onClose={handleCloseAlert} isCentered>

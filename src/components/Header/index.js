@@ -20,7 +20,7 @@ import Authenall from "@/components/UserAuthen/authenall";
 import FullScreenComponent from "../UserAuthen/FullScreenComponent";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);    
 
   const handleButtonClick = () => {
     setIsFullScreen(true);

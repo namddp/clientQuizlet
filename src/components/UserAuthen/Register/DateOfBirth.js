@@ -20,12 +20,11 @@ const DateOfBirth = ({ onChange }) => {
     updateRegisterData();
   };
 
-    const handleAccountTypeChange = (e) => {
+  const handleAccountTypeChange = (e) => {
     const value = e.target.value;
     setAccountType(accountType === value ? "" : value);
     updateRegisterData();
   };
-
 
   const updateRegisterData = () => {
     onChange({
@@ -54,7 +53,7 @@ const DateOfBirth = ({ onChange }) => {
 
   const renderCheckboxes = () => {
     const age = calculateAge();
-    
+
     if (dateOfBirth.day && dateOfBirth.month && dateOfBirth.year) {
       return (
         <div className="">
@@ -64,7 +63,7 @@ const DateOfBirth = ({ onChange }) => {
                 name="accountType"
                 value="teacher"
                 checked={accountType === "teacher"}
-                onChange={e => handleAccountTypeChange(e)}
+                onChange={(e) => handleAccountTypeChange(e)}
                 className="mr-2"
                 size="lg"
                 isInvalid={age < 18}
@@ -79,7 +78,7 @@ const DateOfBirth = ({ onChange }) => {
                 name="accountType"
                 value="student"
                 checked={accountType === "student"}
-                onChange={e=>handleAccountTypeChange(e)}
+                onChange={(e) => handleAccountTypeChange(e)}
                 className="mr-2 "
                 size="lg"
               />

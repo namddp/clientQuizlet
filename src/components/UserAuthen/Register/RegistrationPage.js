@@ -17,6 +17,8 @@ const RegistrationPage = () => {
     username: '',
     password: '',
     dateOfBirth: '',
+    accountType: '',
+    termsAccepted: false,
   });
   const [termsError, setTermsError] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -26,7 +28,7 @@ const RegistrationPage = () => {
         ...prevFormData,
         [keyName]: value,
     }));
-    // setIsFormValid(validateForm(newFormData));
+    setIsFormValid(validateForm(formData));
   };
 
   const handleSubmit = (e) => {
@@ -40,23 +42,23 @@ const RegistrationPage = () => {
     console.log(formData);
   };
 
-
+  // mỗi input field (component con) đều đã có hàm kiểm tra giá trị input riêng, nên nếu tất cả giá trị đều được filled nghĩa là form hợp lệ
   const validateForm = (data) => {
-    // Add your form validation logic here
-    // Return true if the form is valid, otherwise return false
-    // For example, check if all required fields are filled
     return (
       data.email &&
-      data.user &&
+      data.username &&
       data.password &&
       data.dateOfBirth &&
+      data.accountType &&
       data.termsAccepted
     );
   };
+  
   const onClick = () => {
     // Chuyển hướng tới component Login
-    window.location.href = "/login";
+    Router.push("/login");
   };
+
   return (
     <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
@@ -64,8 +66,9 @@ const RegistrationPage = () => {
           <OptionsRegis />
           <Email onChange={(value) => handleFormChange("email", value)} />
           <Username onChange={(value) => handleFormChange("username", value)} />
-          <Password onChange={handleFormChange} />
-          <DateOfBirth onChange={handleFormChange} />
+          <Password onChange={(value) => handleFormChange("password", value)} />
+          <DateOfBirth onChange={(value) => handleFormChange("dateOfBirth", value)} />
+
           <div className="mb-4">
             <Privacity onChange={handleFormChange} />
           </div>

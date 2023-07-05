@@ -20,11 +20,12 @@ const DateOfBirth = ({ onChange }) => {
     updateRegisterData();
   };
 
-  const handleAccountTypeChange = (e) => {
+    const handleAccountTypeChange = (e) => {
     const value = e.target.value;
     setAccountType(accountType === value ? "" : value);
     updateRegisterData();
   };
+
 
   const updateRegisterData = () => {
     onChange({
@@ -62,8 +63,8 @@ const DateOfBirth = ({ onChange }) => {
               <Checkbox
                 name="accountType"
                 value="teacher"
-                checked={isChecked}
-                onChange={handleAccountTypeChange}
+                checked={accountType === "teacher"}
+                onChange={e => handleAccountTypeChange(e)}
                 className="mr-2"
                 size="lg"
                 isInvalid={age < 18}
@@ -77,8 +78,8 @@ const DateOfBirth = ({ onChange }) => {
               <Checkbox
                 name="accountType"
                 value="student"
-                checked={isChecked}
-                onChange={handleAccountTypeChange}
+                checked={accountType === "student"}
+                onChange={e=>handleAccountTypeChange(e)}
                 className="mr-2 "
                 size="lg"
               />

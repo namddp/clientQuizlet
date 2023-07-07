@@ -1,5 +1,4 @@
 import { connectToDatabase } from "./connectToDatabase";
-import QuizCreator from "./test";
 import {
   Box,
   Flex,
@@ -8,6 +7,7 @@ import {
   Checkbox,
   VStack,
   Button,
+  Input
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -45,17 +45,63 @@ export async function getServerSideProps() {
 }
 
 export default function MyPage({ groupedQuestions }) {
-  const handleMoveToQuizCreator = (question) => {
-    // Thực hiện logic chuyển câu hỏi sang component QuizCreator
-    console.log("Chuyển câu hỏi:", question);
-  };
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [quizQuestions, setQuizQuestions] = useState([]);
+  const [editingQuestion, setEditingQuestion] = useState(null);
+
+  const handleMoveToQuizCreator = (question) => {
+    setSelectedQuestion(null);
+
+    // Tạo một biến tạm để lưu trữ giá trị của editingQuestion
+    let updatedEditingQuestion;
+
+    // Tìm câu hỏi trong quizQuestions dựa trên questionID
+    const existingQuestion = quizQuestions.find((q) => q.questionID === question.questionID);
+
+    // Kiểm tra xem câu hỏi đã tồn tại trong quizQuestions hay chưa
+    if (existingQuestion) {
+      updatedEditingQuestion = existingQuestion;
+    } else {
+      // Cập nhật giá trị của editingQuestion thay vì sao chép từ question
+      updatedEditingQuestion = {
+        questionID: question.questionID,
+        content: question.content,
+        answer: question.answer.map((item) => ({
+          title: item.title,
+          content: item.content,
+        })),
+      };
+
+      // Thêm câu hỏi vào quizQuestions
+      setQuizQuestions((prevQuestions) => [...prevQuestions, updatedEditingQuestion]);
+    }
+
+    // Cập nhật giá trị của editingQuestion
+    setEditingQuestion(updatedEditingQuestion);
+  };
+
+  const handleSaveEditQuestion = (question) => {
+    // Cập nhật lại quizQuestions với giá trị đã chỉnh sửa
+    setQuizQuestions((prevQuestions) =>
+      prevQuestions.map((q) => (q.questionID === question.questionID ? editingQuestion : q))
+    );
+    setEditingQuestion(null);
+  };
+
+  const handleEditQuestion = (question) => {
+    setEditingQuestion(question);
+  };
+
+  const handleRemoveFromQuiz = (question) => {
+    setQuizQuestions((prevQuestions) =>
+      prevQuestions.filter((q) => q.questionID !== question.questionID)
+    );
+  };
 
   // Sử dụng dữ liệu trong giao diện của bạn
   return (
     <Flex>
       <Box flex={1} p={4}>
-        {/* Hiển thị các card câu hỏi theo chủ đề */}
         {Object.entries(groupedQuestions).map(([subject, questions], subjectIndex) => (
           <Box key={subject} borderWidth="1px" borderRadius="md" p={4} mb={4}>
             <Heading as="h1" mb={2}>
@@ -83,11 +129,7 @@ export default function MyPage({ groupedQuestions }) {
                     </VStack>
                   </Box>
                 )}
-                <Button
-                  mt={4}
-                  colorScheme="blue"
-                  onClick={() => handleMoveToQuizCreator(question)}
-                >
+                <Button onClick={() => handleMoveToQuizCreator(question)}>
                   Chuyển sang Quiz Creator
                 </Button>
               </Box>
@@ -96,8 +138,74 @@ export default function MyPage({ groupedQuestions }) {
         ))}
       </Box>
       <Box flex={1} p={4}>
-        {/* Đoạn mã tạo câu hỏi từ QuizCreator */}
-        <QuizCreator />
+        <Box borderWidth="1px" borderRadius="md" p={4} mb={4}>
+          <Heading as="h1" mb={2}>
+            <b>Quiz Creator</b>
+          </Heading>
+          {quizQuestions.map((question, index) => (
+            <Box
+              key={question.questionID}
+              borderWidth="1px"
+              borderRadius="md"
+              p={4}
+              mb={4}
+            >
+              {editingQuestion && editingQuestion.questionID === question.questionID ? (
+                <Box>
+                  <Input
+                    value={editingQuestion?.content}
+                    onChange={(e) =>
+                      setEditingQuestion((prevQuestion) => ({
+                        ...prevQuestion,
+                        content: e.target.value,
+                      }))
+                    }
+                  />
+                  {question.answer &&
+                    question.answer.map((item, index) => (
+                      <Box key={index}>
+                        <Text>{item.title}</Text>
+                        <Input
+  value={item.content}
+  defaultValue={item.content}
+  onChange={(e) => {
+    // const updatedAnswer = question.answer.map((ans, idx) =>
+    //   idx === index ? { ...ans, content: e.target.value } : ans
+    // );
+    // setEditingQuestion((prevQuestion) => ({
+    //   ...prevQuestion,
+    //   answer: updatedAnswer,
+    // }));
+    e.target.value
+  }}
+/>
+
+                      </Box>
+                    ))}
+                  <Button onClick={() => handleSaveEditQuestion(question)}>
+                    Lưu chỉnh sửa
+                  </Button>
+                </Box>
+              ) : (
+                <Box>
+                  <Text>{question.content}</Text>
+                  {question.answer &&
+                    question.answer.map((item, index) => (
+                      <Box key={index}>
+                        <Text>
+                          {item.title}. {item.content}
+                        </Text>
+                      </Box>
+                    ))}
+                  <Button onClick={() => handleEditQuestion(question)}>Chỉnh sửa</Button>
+                </Box>
+              )}
+              <Button onClick={() => handleRemoveFromQuiz(question)}>
+                Xóa khỏi Quiz
+              </Button>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Flex>
   );

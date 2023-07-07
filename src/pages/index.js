@@ -1,7 +1,7 @@
 import React from "react";
-import HomeBanner from "@/components/home.component/home.bannercomponent";
-import HomeIntro from "@/components/home.component/home.introcomponent";
-import HomeComment from "@/components/home.component/home.commentcomponent";
+import HomeBanner from "@/components/home.component/banner";
+import HomeIntro from "@/components/home.component/intro";
+import HomeComment from "@/components/home.component/comments";
 
 export default function home() {
   return (

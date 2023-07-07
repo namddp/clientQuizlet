@@ -20,7 +20,7 @@ import Authenall from "@/components/UserAuthen/authenall";
 import FullScreenComponent from "../UserAuthen/FullScreenComponent";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);    
 
   const handleButtonClick = () => {
     setIsFullScreen(true);
@@ -32,14 +32,14 @@ const Header = () => {
   return (
     <header
       className={classNames(
-        "w-full h-16 flex gap-6 px-4 items-center",
+        "w-full h-16 flex gap-6 px-4 items-center sticky top-0 bg-[white]  z-50 border-b",
         styles.root
       )}
     >
       <div className="logo">
         <svg
-          className="w-[172px]"
-          fill="currentColor"
+          className="w-[95px] h-[22px] fill-[#4255ff] text-[14px] font-[600] leading-[20px] text-[#4255ff]"
+          // fill="currentColor"
           viewBox="0 0 86 20"
           xmlns="http://www.w3.org/2000/svg"
         >

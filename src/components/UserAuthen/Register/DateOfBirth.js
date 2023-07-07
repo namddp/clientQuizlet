@@ -1,79 +1,88 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { Select, Checkbox, Tooltip, Button } from "@chakra-ui/react";
 
-const BirthOfDate = () => {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [termsError, setTermsError] = useState("");
-
-  const [formData, setFormData] = useState({
-    dayOfBirth: "",
-    monthOfBirth: "",
-    yearOfBirth: "",
+const DateOfBirth = ({ onChange }) => {
+  const [dateOfBirth, setDateOfBirth] = useState({
+    day: "",
+    month: "",
+    year: "",
   });
-  const handleChange = (e) => {
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
-  };
 
-  const handleQuestionMarkHover = () => {
-    setShowTooltip(true);
-  };
-  const handleQuestionMarkLeave = () => {
-    setShowTooltip(false);
-  };
+  const [accountType, setAccountType] = useState("");
+
   const handleDateChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setDateOfBirth((prevDateOfBirth) => ({
+      ...prevDateOfBirth,
+      [name]: value,
+    }));
+
+    updateRegisterData();
   };
+
+  const handleAccountTypeChange = (e) => {
+    const value = e.target.value;
+    setAccountType(accountType === value ? "" : value);
+    updateRegisterData();
+  };
+
+  const updateRegisterData = () => {
+    onChange({
+      dateOfBirth: new Date(
+        dateOfBirth.year,
+        dateOfBirth.month - 1,
+        dateOfBirth.day
+      ),
+      accountType,
+    });
+  };
+
   const calculateAge = () => {
     const today = new Date();
-    const birthDate = new Date(
-      formData.yearOfBirth,
-      formData.monthOfBirth - 1,
-      formData.dayOfBirth
-    );
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDifference = today.getMonth() - birthDate.getMonth();
+
+    let age = today.getFullYear() - dateOfBirth.year;
+    const monthDifference = today.getMonth() - dateOfBirth.month;
     if (
       monthDifference < 0 ||
-      (monthDifference === 0 && today.getDate() < birthDate.getDate())
+      (monthDifference === 0 && today.getDate() < dateOfBirth.day)
     ) {
       age--;
     }
     return age;
   };
-  const renderCheckboxes = () => {
-    const { dayOfBirth, monthOfBirth, yearOfBirth } = formData;
-    const age = calculateAge(dayOfBirth, monthOfBirth, yearOfBirth);
 
-    if (dayOfBirth && monthOfBirth && yearOfBirth && age >= 18) {
+  const renderCheckboxes = () => {
+    const age = calculateAge();
+
+    if (dateOfBirth.day && dateOfBirth.month && dateOfBirth.year) {
       return (
         <div className="">
           <div>
             <label className="inline-flex items-center mb-2 mt-2">
               <Checkbox
-                name="isTeacher"
-                checked={formData.isTeacher}
-                onChange={handleChange}
+                name="accountType"
+                value="teacher"
+                checked={accountType === "teacher"}
+                onChange={(e) => handleAccountTypeChange(e)}
                 className="mr-2"
                 size="lg"
+                isInvalid={age < 18}
+                disabled={age < 18}
               />
-              <span className="text-base">Tôi là giáo viên</span>
+              <span className="text-base">Tôi là Giáo viên</span>
             </label>
           </div>
           <div>
             <label className="inline-flex items-center mt-2 mb-2">
               <Checkbox
-                name="isStudent"
-                checked={formData.isStudent}
-                onChange={handleChange}
+                name="accountType"
+                value="student"
+                checked={accountType === "student"}
+                onChange={(e) => handleAccountTypeChange(e)}
                 className="mr-2 "
                 size="lg"
-                // marginBottom={"2"}
-                // marginTop={"2"}
               />
-              <span className="text-base">Tôi là học sinh</span>
+              <span className="text-base">Tôi là Học sinh</span>
             </label>
           </div>
         </div>
@@ -82,6 +91,7 @@ const BirthOfDate = () => {
 
     return null;
   };
+
   return (
     <div className="mb-4 w-[50vh]">
       <label
@@ -91,10 +101,9 @@ const BirthOfDate = () => {
         NGÀY SINH
         <span>
           <Tooltip
-            label=" Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung cấp
-          ngày sinh thật để tuân thủ luật lệ quốc gia"
+            label="Quizlets dành cho mọi lứa tuổi nhưng người dùng buộc phải cung cấp ngày sinh thật để tuân thủ luật lệ quốc gia"
             placement="right-end"
-            className ="bg-red-500 "
+            className="bg-red-500"
           >
             <Button size={"xs"} marginLeft={"2"}>
               ?
@@ -106,13 +115,13 @@ const BirthOfDate = () => {
       <div className="flex mb-2 ">
         <Select
           className="shadow appearance-none border focus:outline-none focus:shadow-outline cursor-pointer hover:[#ffcd1f]"
-          name="dayOfBirth"
+          name="day"
           id="dayOfBirth"
           placeholder="Ngày"
           color={"#3ccfcf"}
           fontSize={"14"}
           fontWeight={"600"}
-          value={formData.dayOfBirth}
+          value={dateOfBirth.day}
           onChange={handleDateChange}
           required
           size="lg"
@@ -125,13 +134,13 @@ const BirthOfDate = () => {
         </Select>
         <Select
           className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline cursor-pointer"
-          name="monthOfBirth"
+          name="month"
           id="monthOfBirth"
           placeholder="Tháng"
           color={"#3ccfcf"}
           fontSize={"14"}
           fontWeight={"600"}
-          value={formData.monthOfBirth}
+          value={dateOfBirth.month}
           onChange={handleDateChange}
           required
           size="lg"
@@ -144,13 +153,13 @@ const BirthOfDate = () => {
         </Select>
         <Select
           className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline cursor-pointer"
-          name="yearOfBirth"
+          name="year"
           id="yearOfBirth"
           color={"#3ccfcf"}
           fontSize={"14"}
           fontWeight={"600"}
           placeholder="Năm"
-          value={formData.yearOfBirth}
+          value={dateOfBirth.year}
           onChange={handleDateChange}
           required
           size="lg"
@@ -167,4 +176,4 @@ const BirthOfDate = () => {
   );
 };
 
-export default BirthOfDate;
+export default DateOfBirth;

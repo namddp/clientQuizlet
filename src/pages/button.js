@@ -16,6 +16,8 @@ import {
   CloseButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +34,8 @@ const HomePage = () => {
     setIsOpen(false);
   };
 
+  const router = useRouter();
+
   const handleCreateQuestion = () => {
     if (selectedTitle === "" || selectedSubject === "" || question === "") {
       setShowAlert(true);
@@ -42,11 +46,14 @@ const HomePage = () => {
         question: question,
       };
       localStorage.setItem("questionData", JSON.stringify(questionData));
-      window.location.href = "/test";
+      router.push("/test");
     }
   };
-  
-
+  const handleResetQuestion = () => {
+    setSelectedTitle("");
+    setSelectedSubject("");
+    setQuestion("");
+  };
   return (
     <div>
       <Button colorScheme="blue" onClick={handleOpenModal}>
@@ -101,6 +108,10 @@ const HomePage = () => {
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={handleCreateQuestion}>
               Tạo câu hỏi
+            </Button>
+
+            <Button variant="ghost" onClick={handleResetQuestion}>
+              Xóa
             </Button>
 
             <Button variant="ghost" onClick={handleCloseModal}>

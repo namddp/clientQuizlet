@@ -1,6 +1,17 @@
 import Image from "next/image";
+import { Button } from "@chakra-ui/react";
+import { useState } from "react";
+import FullScreenComponent from "../UserAuthen/FullScreenComponent";
 
 export default function HomeBanner() {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsFullScreen(true);
+  };
+  const handleClose = () => {
+    setIsFullScreen(false);
+  };
   return (
     <div style={{ position: "relative", height: "700px" }}>
       <Image
@@ -33,14 +44,19 @@ export default function HomeBanner() {
           trên nền tảng khoa học, các bài kiểm tra thử và lời giải chuyên gia
           của Quizlet để cải thiện điểm số và đạt được mục tiêu.
         </h2>
-        <button
-          className="bg-[#4243e1] text-[1rem] font-bold py-[12px] rounded-[8px]"
-          style={{
-            width: "200px",
-          }}
-        >
-          Đăng ký miễn phí
-        </button>
+        <div>
+          <Button
+            onClick={handleButtonClick}
+            bg="#ffcd1f"
+            color="#282e3e"
+            _hover={{
+              bg: "#ffdc62",
+            }}
+          >
+            Đăng ký miễn phí
+          </Button>
+          {isFullScreen && <FullScreenComponent onClose={handleClose} />}
+        </div>
       </div>
     </div>
   );

@@ -133,7 +133,8 @@ export default function HomeIntro() {
             </ListItem>
             <ListItem className="flex pb-[30px]">
               <Image
-                src="https://cdn-icons-png.flaticon.com/512/858/858045.png"
+                // src="https://cdn-icons-png.flaticon.com/512/858/858045.png"
+                src="https://prismic-io.s3.amazonaws.com/quizlet-prod/5364d9dd-a28d-41ca-a5d1-308c49aa0f49_Smart+Grading.svg"
                 alt="icon"
                 width={50}
                 height={50}
@@ -182,7 +183,7 @@ export default function HomeIntro() {
           <List spacing={3}>
             <ListItem className="flex pb-[30px]">
               <Image
-                src="https://cdn.pixabay.com/photo/2016/09/16/09/20/books-1673578_1280.png"
+                src="https://prismic-io.s3.amazonaws.com/quizlet-prod/d6cecb4b-2807-42e7-9d31-1d7f22c02987_Textbook+Solutions.svg"
                 alt="icon"
                 width={50}
                 height={50}
@@ -216,7 +217,7 @@ export default function HomeIntro() {
             </ListItem>
             <ListItem className="flex pb-[30px]">
               <Image
-                src="https://cdn3.iconfinder.com/data/icons/iconustration-education-flat/96/study-timeline-path-plan-process-step-education-512.png"
+                src="https://prismic-io.s3.amazonaws.com/quizlet-prod/86d561c3-c0c5-47b6-a75e-a3d85fc64709_Step+by+Step.svg"
                 alt="icon"
                 width={50}
                 height={50}

@@ -7,7 +7,7 @@ import {
   Checkbox,
   VStack,
   Button,
-  Input
+  Input,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -56,7 +56,9 @@ export default function MyPage({ groupedQuestions }) {
     let updatedEditingQuestion;
 
     // Tìm câu hỏi trong quizQuestions dựa trên questionID
-    const existingQuestion = quizQuestions.find((q) => q.questionID === question.questionID);
+    const existingQuestion = quizQuestions.find(
+      (q) => q.questionID === question.questionID
+    );
 
     // Kiểm tra xem câu hỏi đã tồn tại trong quizQuestions hay chưa
     if (existingQuestion) {
@@ -73,7 +75,10 @@ export default function MyPage({ groupedQuestions }) {
       };
 
       // Thêm câu hỏi vào quizQuestions
-      setQuizQuestions((prevQuestions) => [...prevQuestions, updatedEditingQuestion]);
+      setQuizQuestions((prevQuestions) => [
+        ...prevQuestions,
+        updatedEditingQuestion,
+      ]);
     }
 
     // Cập nhật giá trị của editingQuestion
@@ -83,7 +88,9 @@ export default function MyPage({ groupedQuestions }) {
   const handleSaveEditQuestion = (question) => {
     // Cập nhật lại quizQuestions với giá trị đã chỉnh sửa
     setQuizQuestions((prevQuestions) =>
-      prevQuestions.map((q) => (q.questionID === question.questionID ? editingQuestion : q))
+      prevQuestions.map((q) =>
+        q.questionID === question.questionID ? editingQuestion : q
+      )
     );
     setEditingQuestion(null);
   };
@@ -102,40 +109,47 @@ export default function MyPage({ groupedQuestions }) {
   return (
     <Flex>
       <Box flex={1} p={4}>
-        {Object.entries(groupedQuestions).map(([subject, questions], subjectIndex) => (
-          <Box key={subject} borderWidth="1px" borderRadius="md" p={4} mb={4}>
-            <Heading as="h1" mb={2}>
-              <b>{subject}</b>
-            </Heading>
-            {questions.map((question, index) => (
-              <Box
-                key={question.questionID}
-                borderWidth="1px"
-                borderRadius="md"
-                p={4}
-                mb={4}
-              >
-                <Text>{question.content}</Text>
-                {question.answer && question.answer.length > 0 && (
-                  <Box mt={4}>
-                    <VStack align="start" spacing={2}>
-                      {question.answer.map((item, index) => (
-                        <Box key={index} borderWidth="1px" borderRadius="md" p={2}>
-                          <Checkbox>
-                            {item.title}. {item.content}
-                          </Checkbox>
-                        </Box>
-                      ))}
-                    </VStack>
-                  </Box>
-                )}
-                <Button onClick={() => handleMoveToQuizCreator(question)}>
-                  Chuyển sang Quiz Creator
-                </Button>
-              </Box>
-            ))}
-          </Box>
-        ))}
+        {Object.entries(groupedQuestions).map(
+          ([subject, questions], subjectIndex) => (
+            <Box key={subject} borderWidth="1px" borderRadius="md" p={4} mb={4}>
+              <Heading as="h1" mb={2}>
+                <b>{subject}</b>
+              </Heading>
+              {questions.map((question, index) => (
+                <Box
+                  key={question.questionID}
+                  borderWidth="1px"
+                  borderRadius="md"
+                  p={4}
+                  mb={4}
+                >
+                  <Text>{question.content}</Text>
+                  {question.answer && question.answer.length > 0 && (
+                    <Box mt={4}>
+                      <VStack align="start" spacing={2}>
+                        {question.answer.map((item, index) => (
+                          <Box
+                            key={index}
+                            borderWidth="1px"
+                            borderRadius="md"
+                            p={2}
+                          >
+                            <Checkbox>
+                              {item.title}. {item.content}
+                            </Checkbox>
+                          </Box>
+                        ))}
+                      </VStack>
+                    </Box>
+                  )}
+                  <Button onClick={() => handleMoveToQuizCreator(question)}>
+                    Chuyển sang Quiz Creator
+                  </Button>
+                </Box>
+              ))}
+            </Box>
+          )
+        )}
       </Box>
       <Box flex={1} p={4}>
         <Box borderWidth="1px" borderRadius="md" p={4} mb={4}>
@@ -150,7 +164,8 @@ export default function MyPage({ groupedQuestions }) {
               p={4}
               mb={4}
             >
-              {editingQuestion && editingQuestion.questionID === question.questionID ? (
+              {editingQuestion &&
+              editingQuestion.questionID === question.questionID ? (
                 <Box>
                   <Input
                     value={editingQuestion?.content}
@@ -166,17 +181,14 @@ export default function MyPage({ groupedQuestions }) {
                       <Box key={index}>
                         <Text>{item.title}</Text>
                         <Input
-  value={item.content}
-  defaultValue={item.content}
+  value={editingQuestion.answer[index].content}
   onChange={(e) => {
-    // const updatedAnswer = question.answer.map((ans, idx) =>
-    //   idx === index ? { ...ans, content: e.target.value } : ans
-    // );
-    // setEditingQuestion((prevQuestion) => ({
-    //   ...prevQuestion,
-    //   answer: updatedAnswer,
-    // }));
-    e.target.value
+    const updatedAnswer = [...editingQuestion.answer];
+    updatedAnswer[index].content = e.target.value;
+    setEditingQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      answer: updatedAnswer,
+    }));
   }}
 />
 
@@ -197,7 +209,9 @@ export default function MyPage({ groupedQuestions }) {
                         </Text>
                       </Box>
                     ))}
-                  <Button onClick={() => handleEditQuestion(question)}>Chỉnh sửa</Button>
+                  <Button onClick={() => handleEditQuestion(question)}>
+                    Chỉnh sửa
+                  </Button>
                 </Box>
               )}
               <Button onClick={() => handleRemoveFromQuiz(question)}>

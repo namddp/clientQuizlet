@@ -1,4 +1,4 @@
-import { connectToDatabase } from "./connectToDatabase";
+// import { connectToDatabase } from "./connectToDatabase";
 import {
   Box,
   Flex,
@@ -24,11 +24,12 @@ import { useState, useEffect } from "react";
 
 export async function getServerSideProps() {
   try {
-    const client = await connectToDatabase();
-    const collection = client.db("Exam-System").collection("questions");
+    // const client = await connectToDatabase();
+    // const collection = client.db("Exam-System").collection("questions");
 
     // Lấy toàn bộ dữ liệu
-    const questions = await collection.find({}).toArray();
+    const questions = (await import("@/mocks/Exam-System.questions.json"))
+      .default;
 
     // Nhóm câu hỏi theo chủ đề
     const groupedQuestions = {};

@@ -51,20 +51,13 @@ export default function MyPage({ groupedQuestions }) {
 
   const handleMoveToQuizCreator = (question) => {
     setSelectedQuestion(null);
-
-    // Tạo một biến tạm để lưu trữ giá trị của editingQuestion
     let updatedEditingQuestion;
-
-    // Tìm câu hỏi trong quizQuestions dựa trên questionID
     const existingQuestion = quizQuestions.find(
       (q) => q.questionID === question.questionID
     );
-
-    // Kiểm tra xem câu hỏi đã tồn tại trong quizQuestions hay chưa
     if (existingQuestion) {
       updatedEditingQuestion = existingQuestion;
     } else {
-      // Cập nhật giá trị của editingQuestion thay vì sao chép từ question
       updatedEditingQuestion = {
         questionID: question.questionID,
         content: question.content,
@@ -72,16 +65,15 @@ export default function MyPage({ groupedQuestions }) {
           title: item.title,
           content: item.content,
         })),
+        correctAnswer: question.answer.find((item) => item.iscorrect),
+        explanation: question.explanation,
       };
 
-      // Thêm câu hỏi vào quizQuestions
       setQuizQuestions((prevQuestions) => [
         ...prevQuestions,
         updatedEditingQuestion,
       ]);
     }
-
-    // Cập nhật giá trị của editingQuestion
     setEditingQuestion(updatedEditingQuestion);
   };
 
@@ -156,7 +148,7 @@ export default function MyPage({ groupedQuestions }) {
           <Heading as="h1" mb={2}>
             <b>Quiz Creator</b>
           </Heading>
-          {quizQuestions.map((question, index) => (
+          {/* {quizQuestions.map((question, index) => (
             <Box
               key={question.questionID}
               borderWidth="1px"
@@ -181,19 +173,21 @@ export default function MyPage({ groupedQuestions }) {
                       <Box key={index}>
                         <Text>{item.title}</Text>
                         <Input
-  value={editingQuestion.answer[index].content}
-  onChange={(e) => {
-    const updatedAnswer = [...editingQuestion.answer];
-    updatedAnswer[index].content = e.target.value;
-    setEditingQuestion((prevQuestion) => ({
-      ...prevQuestion,
-      answer: updatedAnswer,
-    }));
-  }}
-/>
-
+                          value={editingQuestion.answer[index].content}
+                          onChange={(e) => {
+                            const updatedAnswer = [...editingQuestion.answer];
+                            updatedAnswer[index].content = e.target.value;
+                            setEditingQuestion((prevQuestion) => ({
+                              ...prevQuestion,
+                              answer: updatedAnswer,
+                            }));
+                          }}
+                        />
                       </Box>
                     ))}
+                  <Text>
+                    Đáp án đúng: {editingQuestion?.correctAnswer?.title}
+                  </Text>
                   <Button onClick={() => handleSaveEditQuestion(question)}>
                     Lưu chỉnh sửa
                   </Button>
@@ -209,6 +203,7 @@ export default function MyPage({ groupedQuestions }) {
                         </Text>
                       </Box>
                     ))}
+                  <Text>Đáp án đúng: {question?.correctAnswer?.title}</Text>
                   <Button onClick={() => handleEditQuestion(question)}>
                     Chỉnh sửa
                   </Button>
@@ -218,7 +213,78 @@ export default function MyPage({ groupedQuestions }) {
                 Xóa khỏi Quiz
               </Button>
             </Box>
+          ))} */}
+          {quizQuestions.map((question, index) => (
+  <Box
+    key={question.questionID}
+    borderWidth="1px"
+    borderRadius="md"
+    p={4}
+    mb={4}
+  >
+    {editingQuestion && editingQuestion.questionID === question.questionID ? (
+      <Box>
+        <Input
+          value={editingQuestion?.content}
+          onChange={(e) =>
+            setEditingQuestion((prevQuestion) => ({
+              ...prevQuestion,
+              content: e.target.value,
+            }))
+          }
+        />
+        {question.answer &&
+          question.answer.map((item, index) => (
+            <Box key={index}>
+              <Text>{item.title}</Text>
+              <Input
+  value={editingQuestion.answer[index].content}
+  onChange={(e) => {
+    const updatedAnswer = [...editingQuestion.answer];
+    updatedAnswer[index].content = e.target.value;
+    setEditingQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      answer: updatedAnswer,
+    }));
+  }}
+/>
+  
+            </Box>
           ))}
+        <Text>Đáp án đúng: {editingQuestion?.correctAnswer?.title}</Text>
+        {editingQuestion?.explanation && (
+          <Text>Giải thích: {editingQuestion.explanation.text}</Text>
+        )}
+        <Button onClick={() => handleSaveEditQuestion(question)}>
+          Lưu chỉnh sửa
+        </Button>
+      </Box>
+    ) : (
+      <Box>
+        <Text>{question.content}</Text>
+        {question.answer &&
+          question.answer.map((item, index) => (
+            <Box key={index}>
+              <Text>
+                {item.title}. {item.content}
+              </Text>
+            </Box>
+          ))}
+        <Text>Đáp án đúng: {question?.correctAnswer?.title}</Text>
+        {question?.explanation && (
+          <Text>Giải thích: {question.explanation.text}</Text>
+        )}
+        <Button onClick={() => handleEditQuestion(question)}>
+          Chỉnh sửa
+        </Button>
+      </Box>
+    )}
+    <Button onClick={() => handleRemoveFromQuiz(question)}>
+      Xóa khỏi Quiz
+    </Button>
+  </Box>
+))}
+
         </Box>
       </Box>
     </Flex>

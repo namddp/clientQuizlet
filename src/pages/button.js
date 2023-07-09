@@ -46,7 +46,11 @@ const HomePage = () => {
         question: question,
       };
       localStorage.setItem("questionData", JSON.stringify(questionData));
+<<<<<<< HEAD
       router.push("/test");
+=======
+      router.push("/connect");
+>>>>>>> 65c7cc88b64ce158f1636e9dda54997998095f1f
     }
   };
   const handleResetQuestion = () => {

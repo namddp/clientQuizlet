@@ -24,7 +24,6 @@ import { useState, useEffect } from "react";
 
 export async function getServerSideProps() {
   try {
-    
     const questions = (await import("@/mocks/Exam-System.questions.json"))
       .default;
 
@@ -163,10 +162,16 @@ export default function MyPage({ groupedQuestions }) {
         explanation: question.explanation,
       };
 
-      setQuizQuestions((prevQuestions) => [...prevQuestions, updatedEditingQuestion]);
-      
+      setQuizQuestions((prevQuestions) => [
+        ...prevQuestions,
+        updatedEditingQuestion,
+      ]);
+
       // Save the updated quizQuestions to localStorage
-      localStorage.setItem("quizQuestions", JSON.stringify([...quizQuestions, updatedEditingQuestion]));
+      localStorage.setItem(
+        "quizQuestions",
+        JSON.stringify([...quizQuestions, updatedEditingQuestion])
+      );
     }
     setEditingQuestion(updatedEditingQuestion);
   };
@@ -182,68 +187,91 @@ export default function MyPage({ groupedQuestions }) {
   const handleConfirmationDelete = () => {
     // Remove the question from quizQuestions state
     setQuizQuestions((prevQuestions) =>
-      prevQuestions.filter((q) => q.questionID !== selectedQuestionToDelete.questionID)
+      prevQuestions.filter(
+        (q) => q.questionID !== selectedQuestionToDelete.questionID
+      )
     );
-  
+
     // Remove the question from currentQuizQuestions state
     setCurrentQuizQuestions((prevQuestions) =>
-      prevQuestions.filter((q) => q.questionID !== selectedQuestionToDelete.questionID)
+      prevQuestions.filter(
+        (q) => q.questionID !== selectedQuestionToDelete.questionID
+      )
     );
-  
+
     // Remove the question from createdQuestions state if it was moved to the quiz section
     setCreatedQuestions((prevQuestions) =>
-      prevQuestions.filter((q) => q.questionID !== selectedQuestionToDelete.questionID)
+      prevQuestions.filter(
+        (q) => q.questionID !== selectedQuestionToDelete.questionID
+      )
     );
-  
+
     // Update localStorage to reflect the changes for both quizQuestions, currentQuizQuestions, and createdQuestions
     localStorage.setItem(
       "quizQuestions",
       JSON.stringify(
-        quizQuestions.filter((q) => q.questionID !== selectedQuestionToDelete.questionID)
+        quizQuestions.filter(
+          (q) => q.questionID !== selectedQuestionToDelete.questionID
+        )
       )
     );
-  
+
     localStorage.setItem(
       "currentQuizQuestions",
       JSON.stringify(
-        currentQuizQuestions.filter((q) => q.questionID !== selectedQuestionToDelete.questionID)
+        currentQuizQuestions.filter(
+          (q) => q.questionID !== selectedQuestionToDelete.questionID
+        )
       )
     );
-  
+
     localStorage.setItem(
       "createdQuestions",
       JSON.stringify(
-        createdQuestions.filter((q) => q.questionID !== selectedQuestionToDelete.questionID)
+        createdQuestions.filter(
+          (q) => q.questionID !== selectedQuestionToDelete.questionID
+        )
       )
     );
-  
+
     setIsConfirmationOpen(false);
   };
-  
+
   const handleDeleteQuestion = (questionIndex) => {
     // Remove the question from createdQuestions state
     setCreatedQuestions((prevQuestions) => {
       const updatedQuestions = [...prevQuestions];
       const deletedQuestion = updatedQuestions.splice(questionIndex, 1)[0];
-  
+
       // If the question was moved to the quiz section, remove it from currentQuizQuestions state
-      if (currentQuizQuestions.some((q) => q.questionID === deletedQuestion.questionID)) {
+      if (
+        currentQuizQuestions.some(
+          (q) => q.questionID === deletedQuestion.questionID
+        )
+      ) {
         setCurrentQuizQuestions((prevQuestions) =>
-          prevQuestions.filter((q) => q.questionID !== deletedQuestion.questionID)
+          prevQuestions.filter(
+            (q) => q.questionID !== deletedQuestion.questionID
+          )
         );
-  
+
         // Update localStorage to reflect the changes for currentQuizQuestions
         localStorage.setItem(
           "currentQuizQuestions",
           JSON.stringify(
-            currentQuizQuestions.filter((q) => q.questionID !== deletedQuestion.questionID)
+            currentQuizQuestions.filter(
+              (q) => q.questionID !== deletedQuestion.questionID
+            )
           )
         );
       }
-  
+
       // Save the updated createdQuestions to localStorage
-      localStorage.setItem("createdQuestions", JSON.stringify(updatedQuestions));
-  
+      localStorage.setItem(
+        "createdQuestions",
+        JSON.stringify(updatedQuestions)
+      );
+
       return updatedQuestions;
     });
   };
@@ -256,7 +284,9 @@ export default function MyPage({ groupedQuestions }) {
     }
 
     // Retrieve currentQuizQuestions from localStorage and initialize state
-    const storedCurrentQuizQuestions = localStorage.getItem("currentQuizQuestions");
+    const storedCurrentQuizQuestions = localStorage.getItem(
+      "currentQuizQuestions"
+    );
     if (storedCurrentQuizQuestions) {
       setCurrentQuizQuestions(JSON.parse(storedCurrentQuizQuestions));
     }

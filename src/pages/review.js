@@ -1,53 +1,74 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Box, Text, Checkbox, Stack, Image, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Radio,
+  RadioGroup,
+  VStack,
+  Button,
+  Container,
+} from "@chakra-ui/react";
 
-const Review = () => {
+const ReviewPage = () => {
   const router = useRouter();
-  const { questions } = router.query;
+  const createdQuestions = router.query?.createdQuestions ?? null;
+  const parsedCreatedQuestions = JSON.parse(createdQuestions);
 
-  // Kiểm tra xem có dữ liệu câu hỏi và câu trả lời không
-  if (!questions) {
-    return <div>Loading...</div>;
+  // Handle the case where createdQuestions is undefined or null
+  if (!parsedCreatedQuestions) {
+    return <div>Loading or Error message...</div>;
   }
 
-  const parsedQuestions = JSON.parse(questions);
+  const [answers, setAnswers] = useState({});
+
+  useEffect(() => {
+    // Initialize answers state with an empty object
+    const initialAnswers = {};
+    parsedCreatedQuestions.forEach((question) => {
+      initialAnswers[question.questionID] = ""; // Initialize each question with an empty string
+    });
+    setAnswers(initialAnswers);
+  }, []);
+
+  const handleAnswerChange = (questionID, selectedAnswer) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionID]: selectedAnswer,
+    }));
+  };
+
+  const handleSubmitAnswers = () => {
+    // Handle submitting the answers, e.g., send them to a server for evaluation
+    console.log(answers);
+  };
 
   return (
-    <Box p={4}>
-      <Heading>Review Questions</Heading>
-      {parsedQuestions.map((question, questionIndex) => (
-        <Box key={questionIndex} mt={4}>
-          <Heading as="h1" size="sm">
-            Câu Hỏi {questionIndex + 1}
-          </Heading>
-          <Text>{question.question}</Text>
-          {question.imageDataURL && (
-            <Box marginTop={4}>
-              <Image
-                src={question.imageDataURL}
-                alt="Hình ảnh câu hỏi"
-                width={"50%"}
-                height={"50%"}
-                objectFit="contain"
-              />
-            </Box>
-          )}
-          <Stack spacing={2} marginTop={4}>
-            {question.options.map((option, optionIndex) => (
-              <Checkbox
-                key={optionIndex}
-                isChecked={question.selectedOption === optionIndex}
-                isReadOnly
-              >
-                {option}
-              </Checkbox>
-            ))}
-          </Stack>
+    <Container maxW="lg" mt={4}>
+      <Text fontWeight="bold" fontSize="xl" mb={4}>
+        Review Questions
+      </Text>
+      {parsedCreatedQuestions.map((question, index) => (
+        <Box key={index} borderWidth="1px" borderRadius="md" p={4} my={4}>
+          <Text fontWeight="bold" mb={2}>
+            {question.content}
+          </Text>
+          <RadioGroup isDisabled>
+            <VStack align="start" spacing={2}>
+              {question.answers.map((answer, answerIndex) => (
+                <Radio key={answerIndex} value={answer.title}>
+                  {answer.title}. {answer.content}
+                </Radio>
+              ))}
+            </VStack>
+          </RadioGroup>
         </Box>
       ))}
-    </Box>
+      <Button colorScheme="blue" mt={4} onClick={handleSubmitAnswers}>
+        Submit Answers
+      </Button>
+    </Container>
   );
 };
 
-export default Review;
+export default ReviewPage;

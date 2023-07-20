@@ -21,6 +21,8 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import ReviewPage from "./review";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps() {
   try {
@@ -334,7 +336,14 @@ export default function MyPage({ groupedQuestions }) {
       [subject]: prevSelectedSubjects[subject] ? false : true,
     }));
   };
+  const router = useRouter();
 
+  const handleReviewClick = () => {
+    router.push({
+      pathname: "/review",
+      query: { createdQuestions: JSON.stringify(createdQuestions) },
+    });
+  };
   return (
     <Flex>
       <Box flex={1} p={4}>
@@ -594,6 +603,9 @@ export default function MyPage({ groupedQuestions }) {
             </Box>
           ))}
         </Box>
+        <Button colorScheme="green" mt={4} onClick={handleReviewClick}>
+          Review Questions
+        </Button>
       </Box>
       {isConfirmationOpen && (
         <AlertDialog

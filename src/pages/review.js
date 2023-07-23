@@ -9,16 +9,35 @@ import {
   Button,
   Container,
 } from "@chakra-ui/react";
+import { decode } from "base-64"; // Import the base64 library
 
 const ReviewPage = () => {
   const router = useRouter();
-  const createdQuestions = router.query?.createdQuestions ?? null;
-  const parsedCreatedQuestions = JSON.parse(createdQuestions);
-
-  // Handle the case where createdQuestions is undefined or null
-  if (!parsedCreatedQuestions) {
+  const encodedData = router.query?.data ?? null;
+  
+  // Handle the case where encodedData is undefined or null
+  if (!encodedData) {
     return <div>Loading or Error message...</div>;
   }
+
+  useEffect(() => {
+    // Lấy giá trị của tham số 'data' từ URL
+    const searchParams = new URLSearchParams(location.search);
+    const encodedData = searchParams.get("data");
+
+    // Giải mã dữ liệu từ tham số 'data'
+    const decodedData = decode(encodedData);
+    const parsedData = JSON.parse(decodedData);
+
+    // Xử lý dữ liệu review ở đây (ví dụ: in ra console)
+    console.log(parsedData);
+  }, [location.search]);
+
+  // Decode and parse the encodedData to get the createdQuestions
+  const decodedData = decode(encodedData);
+  const parsedCreatedQuestions = JSON.parse(decodedData);
+
+  const createdQuestions = router.query?.createdQuestions ?? null;
 
   const [answers, setAnswers] = useState({});
 

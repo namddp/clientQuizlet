@@ -23,6 +23,7 @@ import {
 import { useState, useEffect } from "react";
 import ReviewPage from "./review";
 import { useRouter } from "next/router";
+import { encode } from "base-64"; // Import the base64 library
 
 export async function getServerSideProps() {
   try {
@@ -53,7 +54,6 @@ export async function getServerSideProps() {
     };
   }
 }
-
 export default function MyPage({ groupedQuestions }) {
   const [selectedSubjects, setSelectedSubjects] = useState({});
   const [selectedQuestion, setSelectedQuestion] = useState(null);
@@ -338,10 +338,19 @@ export default function MyPage({ groupedQuestions }) {
   };
   const router = useRouter();
 
+  // Function to shorten the URL and encode the createdQuestions data
+
+
+  // ...
+
   const handleReviewClick = () => {
+    // Convert createdQuestions to JSON string and encode it
+    const encodedData = encode(JSON.stringify(createdQuestions));
+  
+    // Use router.push with the query option to pass the encodedData
     router.push({
-      pathname: "/review",
-      query: { createdQuestions: JSON.stringify(createdQuestions) },
+      pathname: '/review',
+      query: { data: encodedData },
     });
   };
   return (

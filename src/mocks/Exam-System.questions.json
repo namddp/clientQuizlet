@@ -1,46 +1,63 @@
 [{
   "_id": {
-    "$oid": "64a3eeee3de269bd6bd78956"
+    "$oid": "64a3eeee3de269bd6bd7895e"
   },
-  "questionID": "1",
-  "subject": "1",
-  "createdBy": "teacher1",
+  "questionID": "57",
+  "subject": "2",
+  "createdBy": "teacher9",
   "isPrivate": true,
-  "level": "recog",
-  "type": "one",
-  "content": "Phép tính nào dưới đây là phép trừ?",
-  "description": "Chọn phép tính trừ trong các phép tính sau:",
+  "level": "comp",
+  "type": "many",
+  "content": "Công thức hóa học của hiđrocacbon có một liên kết đôi và ba liên kết đơn là:",
+  "description": "Chọn công thức hóa học đúng của hiđrocacbon trong các lựa chọn sau:",
   "illustration": null,
   "answer": [
     {
       "title": "A",
-      "content": "8 - 3",
+      "content": "CH3-CH3",
       "illustration": null,
-      "iscorrect": true
+      "iscorrect": false
     },
     {
       "title": "B",
-      "content": "5 x 2",
+      "content": "C2H2",
       "illustration": null,
       "iscorrect": false
     },
     {
       "title": "C",
-      "content": "6 + 4",
+      "content": "C3H6",
       "illustration": null,
-      "iscorrect": false
+      "iscorrect": true
     },
     {
       "title": "D",
-      "content": "9 : 3",
+      "content": "C4H10",
       "illustration": null,
       "iscorrect": false
     }
   ],
   "explanation": {
-    "text": "Phép tính trừ được thực hiện bằng dấu trừ (-).",
+    "text": "Công thức hóa học của hiđrocacbon có một liên kết đôi và ba liên kết đơn là C3H6.",
     "illustration": null
   },
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd78962"
+  },
+  "questionID": "61",
+  "subject": "4",
+  "createdBy": "teacher13",
+  "isPrivate": false,
+  "level": "apply",
+  "type": "essay",
+  "content": "Hãy giải thích quá trình quang hợp và vai trò của nó trong quá trình sống của cây xanh.",
+  "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
+  "illustration": null,
+  "answer": null,
+  "explanation": null,
   "questionScore": null
 },
 {
@@ -84,96 +101,6 @@
   ],
   "explanation": {
     "text": "Phép tính nhân được thực hiện bằng dấu nhân (x).",
-    "illustration": null
-  },
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78958"
-  },
-  "questionID": "51",
-  "subject": "3",
-  "createdBy": "teacher3",
-  "isPrivate": false,
-  "level": "recog",
-  "type": "one",
-  "content": "Đơn vị đo độ dài nào dưới đây thường được sử dụng để đo đường đi từ nhà đến trường?",
-  "description": "Chọn đơn vị đo đúng trong các lựa chọn sau:",
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "Kilôgam (kg)",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "B",
-      "content": "Mét (m)",
-      "illustration": null,
-      "iscorrect": true
-    },
-    {
-      "title": "C",
-      "content": "Giờ (h)",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "D",
-      "content": "Lít (l)",
-      "illustration": null,
-      "iscorrect": false
-    }
-  ],
-  "explanation": {
-    "text": "Đơn vị đo đường đi từ nhà đến trường thường được sử dụng là mét (m).",
-    "illustration": null
-  },
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78959"
-  },
-  "questionID": "52",
-  "subject": "3",
-  "createdBy": "teacher4",
-  "isPrivate": true,
-  "level": "comp",
-  "type": "many",
-  "content": "Cơ quan nào sau đây thường sử dụng đơn vị đo lượng nhiệt là độ C?",
-  "description": "Chọn cơ quan sử dụng đơn vị đo lượng nhiệt đúng trong các lựa chọn sau:",
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "Bệnh viện",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "B",
-      "content": "Trường học",
-      "illustration": null,
-      "iscorrect": true
-    },
-    {
-      "title": "C",
-      "content": "Công viên",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "D",
-      "content": "Thư viện",
-      "illustration": null,
-      "iscorrect": false
-    }
-  ],
-  "explanation": {
-    "text": "Trường học thường sử dụng đơn vị đo lượng nhiệt là độ C (độ Celsius).",
     "illustration": null
   },
   "questionScore": null
@@ -225,6 +152,259 @@
 },
 {
   "_id": {
+    "$oid": "64a3eeee3de269bd6bd78968"
+  },
+  "questionID": "73",
+  "subject": "Lịch sử",
+  "createdBy": "Teacher2",
+  "isPrivate": false,
+  "level": "comp",
+  "type": "multi",
+  "content": "Ai là người đã đọc bản Tuyên ngôn Độc lập của Việt Nam?",
+  "description": null,
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "Hồ Chí Minh",
+      "illustration": null,
+      "isCorrect": true
+    },
+    {
+      "title": "B",
+      "content": "Võ Nguyên Giáp",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "C",
+      "content": "Trần Hưng Đạo",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "D",
+      "content": "Nguyễn Thị Minh Khai",
+      "illustration": null,
+      "isCorrect": false
+    }
+  ],
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd78956"
+  },
+  "questionID": "1",
+  "subject": "1",
+  "createdBy": "teacher1",
+  "isPrivate": true,
+  "level": "recog",
+  "type": "one",
+  "content": "Phép tính nào dưới đây là phép trừ?",
+  "description": "Chọn phép tính trừ trong các phép tính sau:",
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "8 - 3",
+      "illustration": null,
+      "iscorrect": true
+    },
+    {
+      "title": "B",
+      "content": "5 x 2",
+      "illustration": null,
+      "iscorrect": false
+    },
+    {
+      "title": "C",
+      "content": "6 + 4",
+      "illustration": null,
+      "iscorrect": false
+    },
+    {
+      "title": "D",
+      "content": "9 : 3",
+      "illustration": null,
+      "iscorrect": false
+    }
+  ],
+  "explanation": {
+    "text": "Phép tính trừ được thực hiện bằng dấu trừ (-).",
+    "illustration": null
+  },
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd7895c"
+  },
+  "questionID": "55",
+  "subject": "5",
+  "createdBy": "teacher7",
+  "isPrivate": false,
+  "level": "apply",
+  "type": "essay",
+  "content": "Hãy cho biết một sự kiện lịch sử nổi tiếng của Việt Nam và nêu tác động của nó đến quốc gia?",
+  "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
+  "illustration": null,
+  "answer": null,
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd7895f"
+  },
+  "questionID": "58",
+  "subject": "2",
+  "createdBy": "teacher10",
+  "isPrivate": false,
+  "level": "apply",
+  "type": "essay",
+  "content": "Hãy giải thích quá trình cháy là gì và tại sao nó được xem là một quá trình oxi hóa?",
+  "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
+  "illustration": null,
+  "answer": null,
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd78964"
+  },
+  "questionID": "63",
+  "subject": "1",
+  "createdBy": "teacher22",
+  "isPrivate": false,
+  "level": "comp",
+  "type": "many",
+  "content": "Hãy chọn tất cả các số chẵn trong các số sau:",
+  "description": "Chọn tất cả các số chẵn trong các lựa chọn sau:",
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "3",
+      "illustration": null,
+      "iscorrect": false
+    },
+    {
+      "title": "B",
+      "content": "4",
+      "illustration": null,
+      "iscorrect": true
+    },
+    {
+      "title": "C",
+      "content": "5",
+      "illustration": null,
+      "iscorrect": false
+    },
+    {
+      "title": "D",
+      "content": "6",
+      "illustration": null,
+      "iscorrect": true
+    }
+  ],
+  "explanation": {
+    "text": "Các số chẵn trong các số trên là 4 và 6.",
+    "illustration": null
+  },
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd7896a"
+  },
+  "questionID": "5",
+  "subject": "Toán",
+  "createdBy": "Teacher1",
+  "isPrivate": false,
+  "level": "apply",
+  "type": "many",
+  "content": "Có bao nhiêu đoạn thẳng đi qua 4 điểm không thẳng hàng?",
+  "description": null,
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "1",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "B",
+      "content": "2",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "C",
+      "content": "3",
+      "illustration": null,
+      "isCorrect": true
+    },
+    {
+      "title": "D",
+      "content": "4",
+      "illustration": null,
+      "isCorrect": false
+    }
+  ],
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd78961"
+  },
+  "questionID": "60",
+  "subject": "4",
+  "createdBy": "teacher12",
+  "isPrivate": false,
+  "level": "comp",
+  "type": "many",
+  "content": "Các bộ phận chính của một cây gồm có:",
+  "description": "Chọn đúng các bộ phận chính của một cây trong các lựa chọn sau:",
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "Gốc",
+      "illustration": null,
+      "iscorrect": true
+    },
+    {
+      "title": "B",
+      "content": "Thân",
+      "illustration": null,
+      "iscorrect": true
+    },
+    {
+      "title": "C",
+      "content": "Lá",
+      "illustration": null,
+      "iscorrect": true
+    },
+    {
+      "title": "D",
+      "content": "Quả",
+      "illustration": null,
+      "iscorrect": true
+    }
+  ],
+  "explanation": {
+    "text": "Các bộ phận chính của một cây gồm có Gốc, Thân, Lá và Quả.",
+    "illustration": null
+  },
+  "questionScore": null
+},
+{
+  "_id": {
     "$oid": "64a3eeee3de269bd6bd7895b"
   },
   "questionID": "54",
@@ -270,19 +450,148 @@
 },
 {
   "_id": {
-    "$oid": "64a3eeee3de269bd6bd7895c"
+    "$oid": "64a3eeee3de269bd6bd78969"
   },
-  "questionID": "55",
-  "subject": "5",
-  "createdBy": "teacher7",
+  "questionID": "7",
+  "subject": "Toán",
+  "createdBy": "Teacher1",
   "isPrivate": false,
-  "level": "apply",
+  "level": "comp",
+  "type": "one",
+  "content": "Đâu là số nguyên tố?",
+  "description": null,
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "15",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "B",
+      "content": "17",
+      "illustration": null,
+      "isCorrect": true
+    },
+    {
+      "title": "C",
+      "content": "20",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "D",
+      "content": "25",
+      "illustration": null,
+      "isCorrect": false
+    }
+  ],
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd7896b"
+  },
+  "questionID": "6",
+  "subject": "Toán",
+  "createdBy": "Teacher1",
+  "isPrivate": false,
+  "level": "recog",
   "type": "essay",
-  "content": "Hãy cho biết một sự kiện lịch sử nổi tiếng của Việt Nam và nêu tác động của nó đến quốc gia?",
-  "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
+  "content": "Viết phân số 2/5 dưới dạng số thập phân.",
+  "description": null,
   "illustration": null,
   "answer": null,
   "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd7896e"
+  },
+  "questionID": "99",
+  "subject": "Toán",
+  "createdBy": "Teacher1",
+  "isPrivate": false,
+  "level": "apply",
+  "type": "many",
+  "content": "Một cuốn sách có 300 trang. Học sinh đọc hết nửa số trang đã đọc trong ngày thứ nhất vào ngày thứ hai. Hỏi học sinh đã đọc mấy trang trong ngày thứ nhất và trong ngày thứ hai?",
+  "description": null,
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "100 trang trong ngày thứ nhất và 150 trang trong ngày thứ hai",
+      "illustration": null,
+      "isCorrect": true
+    },
+    {
+      "title": "B",
+      "content": "150 trang trong ngày thứ nhất và 100 trang trong ngày thứ hai",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "C",
+      "content": "200 trang trong ngày thứ nhất và 100 trang trong ngày thứ hai",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "D",
+      "content": "150 trang trong ngày thứ nhất và 200 trang trong ngày thứ hai",
+      "illustration": null,
+      "isCorrect": false
+    }
+  ],
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd78958"
+  },
+  "questionID": "51",
+  "subject": "3",
+  "createdBy": "teacher3",
+  "isPrivate": false,
+  "level": "recog",
+  "type": "one",
+  "content": "Đơn vị đo độ dài nào dưới đây thường được sử dụng để đo đường đi từ nhà đến trường?",
+  "description": "Chọn đơn vị đo đúng trong các lựa chọn sau:",
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "Kilôgam (kg)",
+      "illustration": null,
+      "iscorrect": false
+    },
+    {
+      "title": "B",
+      "content": "Mét (m)",
+      "illustration": null,
+      "iscorrect": true
+    },
+    {
+      "title": "C",
+      "content": "Giờ (h)",
+      "illustration": null,
+      "iscorrect": false
+    },
+    {
+      "title": "D",
+      "content": "Lít (l)",
+      "illustration": null,
+      "iscorrect": false
+    }
+  ],
+  "explanation": {
+    "text": "Đơn vị đo đường đi từ nhà đến trường thường được sử dụng là mét (m).",
+    "illustration": null
+  },
   "questionScore": null
 },
 {
@@ -332,61 +641,16 @@
 },
 {
   "_id": {
-    "$oid": "64a3eeee3de269bd6bd7895e"
+    "$oid": "64a3eeee3de269bd6bd78966"
   },
-  "questionID": "57",
-  "subject": "2",
-  "createdBy": "teacher9",
-  "isPrivate": true,
-  "level": "comp",
-  "type": "many",
-  "content": "Công thức hóa học của hiđrocacbon có một liên kết đôi và ba liên kết đơn là:",
-  "description": "Chọn công thức hóa học đúng của hiđrocacbon trong các lựa chọn sau:",
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "CH3-CH3",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "B",
-      "content": "C2H2",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "C",
-      "content": "C3H6",
-      "illustration": null,
-      "iscorrect": true
-    },
-    {
-      "title": "D",
-      "content": "C4H10",
-      "illustration": null,
-      "iscorrect": false
-    }
-  ],
-  "explanation": {
-    "text": "Công thức hóa học của hiđrocacbon có một liên kết đôi và ba liên kết đơn là C3H6.",
-    "illustration": null
-  },
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd7895f"
-  },
-  "questionID": "58",
-  "subject": "2",
-  "createdBy": "teacher10",
+  "questionID": "51",
+  "subject": "Lịch sử",
+  "createdBy": "Teacher2",
   "isPrivate": false,
   "level": "apply",
   "type": "essay",
-  "content": "Hãy giải thích quá trình cháy là gì và tại sao nó được xem là một quá trình oxi hóa?",
-  "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
+  "content": "Viết một đoạn văn ngắn về Cách mạng Tháng Tám năm 1945.",
+  "description": null,
   "illustration": null,
   "answer": null,
   "explanation": null,
@@ -439,60 +703,144 @@
 },
 {
   "_id": {
-    "$oid": "64a3eeee3de269bd6bd78961"
+    "$oid": "64a3eeee3de269bd6bd78959"
   },
-  "questionID": "60",
-  "subject": "4",
-  "createdBy": "teacher12",
-  "isPrivate": false,
+  "questionID": "52",
+  "subject": "3",
+  "createdBy": "teacher4",
+  "isPrivate": true,
   "level": "comp",
   "type": "many",
-  "content": "Các bộ phận chính của một cây gồm có:",
-  "description": "Chọn đúng các bộ phận chính của một cây trong các lựa chọn sau:",
+  "content": "Cơ quan nào sau đây thường sử dụng đơn vị đo lượng nhiệt là độ C?",
+  "description": "Chọn cơ quan sử dụng đơn vị đo lượng nhiệt đúng trong các lựa chọn sau:",
   "illustration": null,
   "answer": [
     {
       "title": "A",
-      "content": "Gốc",
+      "content": "Bệnh viện",
       "illustration": null,
-      "iscorrect": true
+      "iscorrect": false
     },
     {
       "title": "B",
-      "content": "Thân",
+      "content": "Trường học",
       "illustration": null,
       "iscorrect": true
     },
     {
       "title": "C",
-      "content": "Lá",
+      "content": "Công viên",
       "illustration": null,
-      "iscorrect": true
+      "iscorrect": false
     },
     {
       "title": "D",
-      "content": "Quả",
+      "content": "Thư viện",
       "illustration": null,
-      "iscorrect": true
+      "iscorrect": false
     }
   ],
   "explanation": {
-    "text": "Các bộ phận chính của một cây gồm có Gốc, Thân, Lá và Quả.",
+    "text": "Trường học thường sử dụng đơn vị đo lượng nhiệt là độ C (độ Celsius).",
     "illustration": null
   },
   "questionScore": null
 },
 {
   "_id": {
-    "$oid": "64a3eeee3de269bd6bd78962"
+    "$oid": "64a3eeee3de269bd6bd78967"
   },
-  "questionID": "61",
-  "subject": "4",
-  "createdBy": "teacher13",
+  "questionID": "14",
+  "subject": "Lịch sử",
+  "createdBy": "Teacher2",
+  "isPrivate": false,
+  "level": "recog",
+  "type": "multi",
+  "content": "Ngày nào được gọi là Ngày Quốc khánh của Việt Nam?",
+  "description": null,
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "2/9",
+      "illustration": null,
+      "isCorrect": true
+    },
+    {
+      "title": "B",
+      "content": "1/5",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "C",
+      "content": "30/4",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "D",
+      "content": "20/11",
+      "illustration": null,
+      "isCorrect": false
+    }
+  ],
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd7896d"
+  },
+  "questionID": "98",
+  "subject": "Toán",
+  "createdBy": "Teacher1",
+  "isPrivate": false,
+  "level": "comp",
+  "type": "one",
+  "content": "Tìm kết quả của phép tính 7 * 8 - 5 + 2.",
+  "description": null,
+  "illustration": null,
+  "answer": [
+    {
+      "title": "A",
+      "content": "51",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "B",
+      "content": "55",
+      "illustration": null,
+      "isCorrect": false
+    },
+    {
+      "title": "C",
+      "content": "53",
+      "illustration": null,
+      "isCorrect": true
+    },
+    {
+      "title": "D",
+      "content": "57",
+      "illustration": null,
+      "isCorrect": false
+    }
+  ],
+  "explanation": null,
+  "questionScore": null
+},
+{
+  "_id": {
+    "$oid": "64a3eeee3de269bd6bd78965"
+  },
+  "questionID": "64",
+  "subject": "1",
+  "createdBy": "teacher23",
   "isPrivate": false,
   "level": "apply",
   "type": "essay",
-  "content": "Hãy giải thích quá trình quang hợp và vai trò của nó trong quá trình sống của cây xanh.",
+  "content": "Hãy giải thích quy tắc chia hết cho 3 và cách kiểm tra tính chia hết cho 3.",
   "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
   "illustration": null,
   "answer": null,
@@ -546,270 +894,6 @@
 },
 {
   "_id": {
-    "$oid": "64a3eeee3de269bd6bd78964"
-  },
-  "questionID": "63",
-  "subject": "1",
-  "createdBy": "teacher22",
-  "isPrivate": false,
-  "level": "comp",
-  "type": "many",
-  "content": "Hãy chọn tất cả các số chẵn trong các số sau:",
-  "description": "Chọn tất cả các số chẵn trong các lựa chọn sau:",
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "3",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "B",
-      "content": "4",
-      "illustration": null,
-      "iscorrect": true
-    },
-    {
-      "title": "C",
-      "content": "5",
-      "illustration": null,
-      "iscorrect": false
-    },
-    {
-      "title": "D",
-      "content": "6",
-      "illustration": null,
-      "iscorrect": true
-    }
-  ],
-  "explanation": {
-    "text": "Các số chẵn trong các số trên là 4 và 6.",
-    "illustration": null
-  },
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78965"
-  },
-  "questionID": "64",
-  "subject": "1",
-  "createdBy": "teacher23",
-  "isPrivate": false,
-  "level": "apply",
-  "type": "essay",
-  "content": "Hãy giải thích quy tắc chia hết cho 3 và cách kiểm tra tính chia hết cho 3.",
-  "description": "Viết một đoạn văn ngắn trả lời câu hỏi trên.",
-  "illustration": null,
-  "answer": null,
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78966"
-  },
-  "questionID": "51",
-  "subject": "Lịch sử",
-  "createdBy": "Teacher2",
-  "isPrivate": false,
-  "level": "apply",
-  "type": "essay",
-  "content": "Viết một đoạn văn ngắn về Cách mạng Tháng Tám năm 1945.",
-  "description": null,
-  "illustration": null,
-  "answer": null,
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78967"
-  },
-  "questionID": "14",
-  "subject": "Lịch sử",
-  "createdBy": "Teacher2",
-  "isPrivate": false,
-  "level": "recog",
-  "type": "multi",
-  "content": "Ngày nào được gọi là Ngày Quốc khánh của Việt Nam?",
-  "description": null,
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "2/9",
-      "illustration": null,
-      "isCorrect": true
-    },
-    {
-      "title": "B",
-      "content": "1/5",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "C",
-      "content": "30/4",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "D",
-      "content": "20/11",
-      "illustration": null,
-      "isCorrect": false
-    }
-  ],
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78968"
-  },
-  "questionID": "73",
-  "subject": "Lịch sử",
-  "createdBy": "Teacher2",
-  "isPrivate": false,
-  "level": "comp",
-  "type": "multi",
-  "content": "Ai là người đã đọc bản Tuyên ngôn Độc lập của Việt Nam?",
-  "description": null,
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "Hồ Chí Minh",
-      "illustration": null,
-      "isCorrect": true
-    },
-    {
-      "title": "B",
-      "content": "Võ Nguyên Giáp",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "C",
-      "content": "Trần Hưng Đạo",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "D",
-      "content": "Nguyễn Thị Minh Khai",
-      "illustration": null,
-      "isCorrect": false
-    }
-  ],
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd78969"
-  },
-  "questionID": "7",
-  "subject": "Toán",
-  "createdBy": "Teacher1",
-  "isPrivate": false,
-  "level": "comp",
-  "type": "one",
-  "content": "Đâu là số nguyên tố?",
-  "description": null,
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "15",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "B",
-      "content": "17",
-      "illustration": null,
-      "isCorrect": true
-    },
-    {
-      "title": "C",
-      "content": "20",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "D",
-      "content": "25",
-      "illustration": null,
-      "isCorrect": false
-    }
-  ],
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd7896a"
-  },
-  "questionID": "5",
-  "subject": "Toán",
-  "createdBy": "Teacher1",
-  "isPrivate": false,
-  "level": "apply",
-  "type": "many",
-  "content": "Có bao nhiêu đoạn thẳng đi qua 4 điểm không thẳng hàng?",
-  "description": null,
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "1",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "B",
-      "content": "2",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "C",
-      "content": "3",
-      "illustration": null,
-      "isCorrect": true
-    },
-    {
-      "title": "D",
-      "content": "4",
-      "illustration": null,
-      "isCorrect": false
-    }
-  ],
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd7896b"
-  },
-  "questionID": "6",
-  "subject": "Toán",
-  "createdBy": "Teacher1",
-  "isPrivate": false,
-  "level": "recog",
-  "type": "essay",
-  "content": "Viết phân số 2/5 dưới dạng số thập phân.",
-  "description": null,
-  "illustration": null,
-  "answer": null,
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
     "$oid": "64a3eeee3de269bd6bd7896c"
   },
   "questionID": "97",
@@ -843,90 +927,6 @@
     {
       "title": "D",
       "content": "15",
-      "illustration": null,
-      "isCorrect": false
-    }
-  ],
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd7896d"
-  },
-  "questionID": "98",
-  "subject": "Toán",
-  "createdBy": "Teacher1",
-  "isPrivate": false,
-  "level": "comp",
-  "type": "one",
-  "content": "Tìm kết quả của phép tính 7 * 8 - 5 + 2.",
-  "description": null,
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "51",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "B",
-      "content": "55",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "C",
-      "content": "53",
-      "illustration": null,
-      "isCorrect": true
-    },
-    {
-      "title": "D",
-      "content": "57",
-      "illustration": null,
-      "isCorrect": false
-    }
-  ],
-  "explanation": null,
-  "questionScore": null
-},
-{
-  "_id": {
-    "$oid": "64a3eeee3de269bd6bd7896e"
-  },
-  "questionID": "99",
-  "subject": "Toán",
-  "createdBy": "Teacher1",
-  "isPrivate": false,
-  "level": "apply",
-  "type": "many",
-  "content": "Một cuốn sách có 300 trang. Học sinh đọc hết nửa số trang đã đọc trong ngày thứ nhất vào ngày thứ hai. Hỏi học sinh đã đọc mấy trang trong ngày thứ nhất và trong ngày thứ hai?",
-  "description": null,
-  "illustration": null,
-  "answer": [
-    {
-      "title": "A",
-      "content": "100 trang trong ngày thứ nhất và 150 trang trong ngày thứ hai",
-      "illustration": null,
-      "isCorrect": true
-    },
-    {
-      "title": "B",
-      "content": "150 trang trong ngày thứ nhất và 100 trang trong ngày thứ hai",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "C",
-      "content": "200 trang trong ngày thứ nhất và 100 trang trong ngày thứ hai",
-      "illustration": null,
-      "isCorrect": false
-    },
-    {
-      "title": "D",
-      "content": "150 trang trong ngày thứ nhất và 200 trang trong ngày thứ hai",
       "illustration": null,
       "isCorrect": false
     }

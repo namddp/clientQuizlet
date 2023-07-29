@@ -1854,8 +1854,6 @@ babel-plugin-macros@^3.1.0:
 balanced-match@^1.0.0:
   version "1.0.2"
 
-big-integer@^1.6.44:
-  version "1.6.51"
 
 binary-extensions@^2.0.0:
   version "2.2.0"

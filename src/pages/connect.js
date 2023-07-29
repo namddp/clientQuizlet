@@ -72,6 +72,7 @@ export default function MyPage({ groupedQuestions }) {
   const [createdQuestions, setCreatedQuestions] = useState([]);
   const [explanation, setExplanation] = useState("");
   const [currentQuizQuestions, setCurrentQuizQuestions] = useState([]);
+  const [editedQuestions, setEditedQuestions] = useState([]); // Thêm dòng này để khai báo biến editedQuestions
 
   const handleCreateQuestion = () => {
     const question = {
@@ -301,7 +302,14 @@ export default function MyPage({ groupedQuestions }) {
       setQuizQuestions(JSON.parse(storedQuizQuestions));
     }
   }, []);
-
+  useEffect(() => {
+    // Retrieve editedQuestions from localStorage and initialize state
+    const storedEditedQuestions = localStorage.getItem("editedQuestions");
+    if (storedEditedQuestions) {
+      setEditedQuestions(JSON.parse(storedEditedQuestions));
+    }
+  }, []);
+  
   const handleSaveEditQuestion = (question) => {
     // Cập nhật lại quizQuestions với giá trị đã chỉnh sửa
     setQuizQuestions((prevQuestions) =>
@@ -311,9 +319,8 @@ export default function MyPage({ groupedQuestions }) {
     );
     setEditingQuestion(null);
   };
-
   const handleEditQuestions = (question) => {
-    setEditingQuestion(question);
+    setEditedQuestions((prevQuestions) => [...prevQuestions, question]);
   };
 
   const handleRemoveFromQuiz = (question) => {
@@ -344,13 +351,17 @@ export default function MyPage({ groupedQuestions }) {
   // ...
 
   const handleReviewClick = () => {
-    // Convert createdQuestions to JSON string and encode it
-    const encodedData = encode(JSON.stringify(createdQuestions));
-  
-    // Use router.push with the query option to pass the encodedData
+    // Convert both createdQuestions and editedQuestions to JSON strings and encode them
+    const encodedCreatedData = encode(JSON.stringify(createdQuestions));
+    const encodedEditedData = encode(JSON.stringify(editedQuestions));
+
+    // Use router.push with the query option to pass both sets of questions
     router.push({
-      pathname: '/review',
-      query: { data: encodedData },
+      pathname: "/review",
+      query: {
+        createdData: encodedCreatedData,
+        editedData: encodedEditedData,
+      },
     });
   };
   return (

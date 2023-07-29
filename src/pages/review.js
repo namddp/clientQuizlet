@@ -8,74 +8,62 @@ import {
   VStack,
   Button,
   Container,
+  Checkbox,
 } from "@chakra-ui/react";
 import { decode } from "base-64"; // Import the base64 library
 
 const ReviewPage = () => {
   const router = useRouter();
-  const encodedData = router.query?.data ?? null;
-  
-  // Handle the case where encodedData is undefined or null
-  if (!encodedData) {
+  const encodedCreatedData = router.query?.createdData ?? null;
+  const encodedEditedData = router.query?.editedData ?? null;
+
+  // Handle the case where encodedCreatedData and encodedEditedData are undefined or null
+  if (!encodedCreatedData || !encodedEditedData) {
     return <div>Loading or Error message...</div>;
   }
 
-  useEffect(() => {
-    // Lấy giá trị của tham số 'data' từ URL
-    const searchParams = new URLSearchParams(location.search);
-    const encodedData = searchParams.get("data");
+  // Decode the encoded data to get the createdQuestionsData
+  const decodedCreatedData = decode(encodedCreatedData);
+  const parsedCreatedQuestionsData = JSON.parse(decodedCreatedData);
 
-    // Giải mã dữ liệu từ tham số 'data'
-    const decodedData = decode(encodedData);
-    const parsedData = JSON.parse(decodedData);
+  // Combine the parsedCreatedQuestions and parsedCreatedQuestionsData to get all questions
+  const allQuestions = [
+    ...parsedCreatedQuestions,
+    ...(parsedCreatedQuestionsData || []),
+  ];
 
-    // Xử lý dữ liệu review ở đây (ví dụ: in ra console)
-    console.log(parsedData);
-  }, [location.search]);
+  // Initialize selected questions state
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
 
-  // Decode and parse the encodedData to get the createdQuestions
-  const decodedData = decode(encodedData);
-  const parsedCreatedQuestions = JSON.parse(decodedData);
-
-  const createdQuestions = router.query?.createdQuestions ?? null;
-
-  const [answers, setAnswers] = useState({});
-
-  useEffect(() => {
-    // Initialize answers state with an empty object
-    const initialAnswers = {};
-    parsedCreatedQuestions.forEach((question) => {
-      initialAnswers[question.questionID] = ""; // Initialize each question with an empty string
+  // Function to handle adding or removing questions from the selectedQuestions state
+  const handleSelectQuestion = (questionID) => {
+    setSelectedQuestions((prevSelectedQuestions) => {
+      if (prevSelectedQuestions.includes(questionID)) {
+        // Question is already selected, remove it from the selectedQuestions state
+        return prevSelectedQuestions.filter((id) => id !== questionID);
+      } else {
+        // Question is not selected, add it to the selectedQuestions state
+        return [...prevSelectedQuestions, questionID];
+      }
     });
-    setAnswers(initialAnswers);
-  }, []);
-
-  const handleAnswerChange = (questionID, selectedAnswer) => {
-    setAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionID]: selectedAnswer,
-    }));
   };
 
-  const handleSubmitAnswers = () => {
-    // Handle submitting the answers, e.g., send them to a server for evaluation
-    console.log(answers);
-  };
+  // ... (rest of the code remains unchanged)
 
   return (
     <Container maxW="lg" mt={4}>
       <Text fontWeight="bold" fontSize="xl" mb={4}>
         Review Questions
       </Text>
-      {parsedCreatedQuestions.map((question, index) => (
+      {allQuestions.map((question, index) => (
         <Box key={index} borderWidth="1px" borderRadius="md" p={4} my={4}>
           <Text fontWeight="bold" mb={2}>
             {question.content}
           </Text>
-          <RadioGroup isDisabled>
+          <RadioGroup value={selectedQuestions.includes(question.questionID) ? "selected" : "unselected"} onChange={(e) => handleSelectQuestion(question.questionID)}>
             <VStack align="start" spacing={2}>
               {question.answers.map((answer, answerIndex) => (
-                <Radio key={answerIndex} value={answer.title}>
+                <Radio key={answerIndex} value="selected" isDisabled={true}>
                   {answer.title}. {answer.content}
                 </Radio>
               ))}

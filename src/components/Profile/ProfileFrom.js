@@ -1,10 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import Exercisess from "./Exercisess";
+import Directory from "./Directory";
+import CreateClass from "./CreateClass";
+import JoinClass from "./JoinClass";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function ProfileForm() {
   const [activeTab, setActiveTab] = React.useState("");
   const [showTab, setShowTab] = React.useState(false);
+
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -12,7 +19,7 @@ export default function ProfileForm() {
   };
 
   return (
-    <div className="text-[#f6f7fb] p-[40px]">
+    <div className="text-[#f6f7fb] pt-[32px] px-[10%]">
       <div className="my-[24px] flex items-center ">
         <div className="mr-[24px] flex justify-center items-center">
           <Image
@@ -25,14 +32,14 @@ export default function ProfileForm() {
         </div>
         <div clasName="flex items-center">
           <div className="flex justify-center items-center">
-            <h1 className="font-bold text-[25px] mr-[4px]">name</h1>
+            <h1 className="font-bold text-[25px] mr-[4px]">{user?.username}</h1>
             <div className="bg-[#d9dde8] w-[70px] h-[20px] rounded-[10px] flex justify-center items-center">
               <h1 className="text-[12px] text-[#2e3856] font-semibold">
-                Giáo viên
+                {user?.role}
               </h1>
             </div>
           </div>
-          <h1 className="font-bold text-[20px] text-[#939bb4]">name</h1>
+          <h1 className="font-bold text-[20px] text-[#939bb4]">{user.email}</h1>
         </div>
       </div>
       <div className="flex justify-start items-center font-semibold h-[40px] text-[#939bb4] border-b-[2px] border-[#2e3856]">
@@ -67,21 +74,23 @@ export default function ProfileForm() {
           <h1>Lớp học</h1>
         </div>
       </div>
+
       {showTab && (
         <div>
           {activeTab === "Học phần" && (
             <div>
-              <Exercisess/>
+              <Exercisess />
             </div>
           )}
           {activeTab === "Thư mục" && (
             <div>
-              <h1>thư mục</h1>
+              <Directory />
             </div>
           )}
           {activeTab === "Lớp học" && (
             <div>
-              <h1>lớp học</h1>
+              {user?.role === "teacher" && <CreateClass />}
+              {user?.role === "student" && <JoinClass />}
             </div>
           )}
         </div>

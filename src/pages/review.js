@@ -13,6 +13,7 @@ import {
 import { decode } from "base-64"; // Import the base64 library
 
 const ReviewPage = () => {
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
   const router = useRouter();
   const encodedCreatedData = router.query?.createdData ?? null;
   const encodedEditedData = router.query?.editedData ?? null;
@@ -33,7 +34,6 @@ const ReviewPage = () => {
   ];
 
   // Initialize selected questions state
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
 
   // Function to handle adding or removing questions from the selectedQuestions state
   const handleSelectQuestion = (questionID) => {

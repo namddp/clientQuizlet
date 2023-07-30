@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -8,8 +8,21 @@ import {
   Button,
   ButtonGroup,
 } from "@chakra-ui/react";
-
+import { useSelector } from "react-redux";
 export default function Account() {
+  const user = useSelector((state) => state.auth.user);
+  
+  const [accountType, setAccountType] = useState(user?.accountType);
+
+  useEffect(() => {
+    setAccountType(user?.accountType)
+  })
+
+  const hanldeChangeAccountType = (value) => {
+    setAccountType(value)
+  }
+
+
   return (
     <div className="flex mx-[119px] pt-[24px] ">
       <div className="w-1/5 flex-shrink-0 flex flex-col justify-items-start items-center max-w-[20%] max-h-[100%] ">
@@ -37,15 +50,16 @@ export default function Account() {
           <div>
             <h5 className="text-[#fafafa] text-[15px] font-[bold] pb-[16px]">
               Chọn loại tài khoản của bạn:
+              {user?.accountType}
             </h5>
           </div>
           <div className="pb-[36px]">
-            <RadioGroup defaultValue="2">
+            <RadioGroup defaultValue="2" onChange={hanldeChangeAccountType} value={accountType}>
               <Stack spacing={5} direction="column">
-                <Radio colorScheme="orange" value="1" size="lg">
+                <Radio colorScheme="orange" value="teacher" size="lg">
                   <span className="text-[#f6f7fb]">Giáo viên</span>
                 </Radio>
-                <Radio colorScheme="orange" value="2" size="lg">
+                <Radio colorScheme="orange" value="student" size="lg">
                   <span className="text-[#f6f7fb]">Học sinh</span>
                 </Radio>
               </Stack>

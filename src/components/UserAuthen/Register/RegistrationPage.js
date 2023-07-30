@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
-import GoogleLoginButton from "../auth/GoogleLoginButton";
 import Email from "@/components/UserAuthen/Register/Email";
 import Username from "@/components/UserAuthen/Register/Username";
 import Password from "@/components/UserAuthen/Register/Password";
@@ -8,7 +7,8 @@ import Privacity from "@/components/UserAuthen/Register/Privacy";
 import DateOfBirth from "@/components/UserAuthen/Register/DateOfBirth";
 import Link from "next/link";
 import OptionsRegis from "@/components/UserAuthen/Register/OptionsRegis";
-import Login from "../Login/Login";
+import axiosInstance from "@/utils/axiosConfig";
+import { loginSuccess } from "@/redux/actions/usersActions";
 
 const RegistrationPage = () => {
 
@@ -23,13 +23,24 @@ const RegistrationPage = () => {
   const [termsError, setTermsError] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   
+
+  useEffect(() => {
+    setIsFormValid(validateForm(formData));
+  },[formData])
+
   const handleFormChange = (keyName, value) => {
     setFormData((prevFormData) => ({
         ...prevFormData,
         [keyName]: value,
     }));
-    setIsFormValid(validateForm(formData));
+    // setIsFormValid(validateForm(formData))
   };
+
+  const handleDateOfBirth = (value) => {
+    for (const key in value) {
+      handleFormChange(key, value[key])
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +50,22 @@ const RegistrationPage = () => {
       );
       return;
     }
-    console.log(formData);
+
+    if (isFormValid) {
+      axiosInstance.post('/auth/register',formData)
+        .then(res => {
+          const {accessToken, ...user} = res.data
+          localStorage.setItem("accessToken", accessToken);
+          // Store user into localStore
+          const userJSON = JSON.stringify(user);
+          localStorage.setItem('user', userJSON);
+          loginSuccess(user);
+          window.location.reload();
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }
   };
 
   // mỗi input field (component con) đều đã có hàm kiểm tra giá trị input riêng, nên nếu tất cả giá trị đều được filled nghĩa là form hợp lệ
@@ -64,11 +90,10 @@ const RegistrationPage = () => {
       <div className="flex justify-center items-center h-full">
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <OptionsRegis />
-          <Email onChange={(value) => handleFormChange("email", value)} />
-          <Username onChange={(value) => handleFormChange("username", value)} />
-          <Password onChange={(value) => handleFormChange("password", value)} />
-          <DateOfBirth onChange={(value) => handleFormChange("dateOfBirth", value)} />
-
+          <Email onChange={handleFormChange} />
+          <Username onChange={handleFormChange} />
+          <Password onChange={handleFormChange} />
+          <DateOfBirth onChange={handleDateOfBirth} />
           <div className="mb-4">
             <Privacity onChange={handleFormChange} />
           </div>

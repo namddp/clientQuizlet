@@ -3,6 +3,8 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+
 import {
   Button,
   Input,
@@ -12,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function ChangeEmail() {
+  const user = useSelector((state) => state.auth.user);
+
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -43,7 +47,7 @@ export default function ChangeEmail() {
           Cập nhật địa chỉ email của bạn
         </h1>
         <h1 className="text-[15px] text-[#fafafa] pb-[24px]  ">
-          Địa chỉ email hiện tại của bạn là
+          Địa chỉ email hiện tại của bạn là: {user?.email}
         </h1>
         <hr className="border-black" />
         <div className="pt-[24px] text-[#fafafa]">

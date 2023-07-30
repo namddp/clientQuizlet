@@ -1,10 +1,10 @@
 import React from "react";
-import GoogleLoginButton from "@/components/UserAuthen/auth/GoogleLoginButton";
+// import GoogleLoginButton from "@/components/UserAuthen/auth/GoogleLoginButton";
 const OptionsRegis = () => {
   return (
     <div>
       <div>
-        <GoogleLoginButton />
+        {/* <GoogleLoginButton /> */}
       </div>
       <div className="relative w-full ml-[10vh] mt-8 mb-8">
         <hr className="w-full" />

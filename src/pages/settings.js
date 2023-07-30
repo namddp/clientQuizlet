@@ -5,6 +5,7 @@ import ChangeEmail from "@/components/SettingsFrofile/ChangeEmail";
 import DeleteAccount from "@/components/SettingsFrofile/DeleteAccount";
 
 export default function Settings() {
+
   return (
     <main className="min-h-screen bg-[#0a092d]">
       <div className="h-full">

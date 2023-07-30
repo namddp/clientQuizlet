@@ -33,7 +33,7 @@ export default function HomeComment() {
                   alt="pic"
                   width={300}
                   height={300}
-                  borderRadius="lg"
+                  // borderRadius="lg"
                 />
                 <Heading
                   className="font-[700] leading-[24px] py-[30px]"

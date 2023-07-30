@@ -2,44 +2,71 @@ import { React, useState } from "react";
 import OptionsRegis from "../Register/OptionsRegis";
 import { Button, Input } from "@chakra-ui/react";
 import Link from "next/link";
-import RegistrationPage from "../Register/RegistrationPage";
+import Email from "@/components/UserAuthen/Register/Email";
+import Password from "@/components/UserAuthen/Register/Password";
+import axiosInstance from "@/utils/axiosConfig";
+import { loginSuccess } from "@/redux/actions/usersActions";
 
-const Login = () => {
+const Login = ({onClose}) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  const [serverErr , setServerErr] = useState([])
+ 
+  const handleFormChange = (keyName, value) => {
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        [keyName]: value,
+    }));
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.email && formData.password) {
+      setServerErr([])
+      axiosInstance.post('/auth/login',formData)
+        .then(res => {
+            const {accessToken, ...user} = res.data
+            localStorage.setItem("accessToken", accessToken);
+            // Store user into localStore
+            const userJSON = JSON.stringify(user);
+            localStorage.setItem('user', userJSON);
+            loginSuccess(user);
+            window.location.reload();
+        })
+        .catch(error => {
+          console.log(error)
+          if (error.response && error.response.data) {
+            const { message } = error.response.data
+            setServerErr(prev => [...prev , message])
+          }
+        })
+    }
+  };
+
+
   return (
     <div className="w-full h-full bg-red flex">
       <div className="flex justify-center items-center h-full">
-        <form className="w-full max-w-md">
+        <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <OptionsRegis />
+          <div className="error-message">
+            <ul className="mt-6 mb-6">
+              { serverErr.length > 0 && (
+                serverErr.map((err,index) => ( 
+                  <li key={index} className="text-red-400 text-md font-bold">{err}</li>
+                ))
+              )}
+            </ul>
+          </div>
           <div className="mb-4">
-            <Input
-              focusBorderColor="#ffcd1f"
-              width={"80vh"}
-              placeholder="user@quizlet.com"
-              // type="email"
-              // name="email"
-              // id="email"
-              required
-              variant="flushed"
-              placeContent="Nhập Email hoặc tên người dùng của bạn"
-              paddingLeft={"2"}
-              size="lg"
-            />
-            <p className="text-sm mt-2 text-[#939bb4] font-semibold ">EMAIL</p>
+            <Email onChange={handleFormChange} />
           </div>
           <div>
-            <Input
-              focusBorderColor="#ffcd1f"
-              width={"80vh"}
-              placeholder="user@quizlet.com"
-              type="password"
-              name="password"
-              id="password"
-              required
-              variant="flushed"
-              placeContent="Nhập mật khẩu"
-              paddingLeft={"2"}
-              size="lg"
-            />
+            <Password onChange={handleFormChange} />
             <div className="flex justify-between mt-2 w-[80vh]">
               <p className="text-sm text-[#939bb4] font-semibold ">MẬT KHẨU</p>
               <Link

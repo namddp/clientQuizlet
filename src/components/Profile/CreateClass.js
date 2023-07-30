@@ -5,18 +5,39 @@ import { Button, Input } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import axiosInstance from "@/utils/axiosConfig";
+import { useSelector } from "react-redux";
 
 export default function CreateClass() {
   const [folderTitle, setFolderTitle] = useState("");
   const [folderDescription, setFolderDescription] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  
   const handleClose = () => {
     setIsOpen(false);
   };
   const handleOpen = () => {
     setIsOpen(true);
   };
+
+
+  const user = useSelector((state) => state.auth.user);
+
+  const handleSubmit = () => {
+    // Thực hiện các hành động khi nhấp vào nút "Tạo thư mục"
+    axiosInstance.post('/class/createClass',{
+      className: folderTitle,
+      createdBy: user._id
+    }).then(res => {
+      if(res.status == 201) {
+        handleClose()
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  } 
+
   useEffect(() => {
     setIsButtonDisabled(!(folderTitle && folderDescription));
   }, [folderTitle, folderDescription]);
@@ -98,11 +119,7 @@ export default function CreateClass() {
                           ? "opacity-50 cursor-not-allowed bg-gray-400"
                           : ""
                       }`}
-                      onClick={() => {
-                        // Thực hiện các hành động khi nhấp vào nút "Tạo thư mục"
-                        console.log("Tiêu đề thư mục:", folderTitle);
-                        console.log("Mô tả thư mục:", folderDescription);
-                      }}
+                      onClick={handleSubmit}
                       disabled={isButtonDisabled}
                     >
                       Tạo lớp mới

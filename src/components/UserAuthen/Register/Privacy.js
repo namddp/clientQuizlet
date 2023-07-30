@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { Checkbox } from "@chakra-ui/react";
 import Link from "next/link";
 
-const Privacity = () => {
+const Privacity = ({ onChange }) => {
   const [formData, setFormData] = useState({
     termsAccepted: false,
   });
@@ -20,6 +20,7 @@ const Privacity = () => {
   const handleChange = (e) => {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    onChange('termsAccepted',value)
     setFormData({ ...formData, [e.target.name]: value });
   };
   return (

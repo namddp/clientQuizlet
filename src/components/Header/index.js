@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import HeaderSearch from "../HeaderSearch";
+import { logout } from "@/redux/authSlice";
+
 import {
   Button,
   Menu,
@@ -18,9 +20,19 @@ import classNames from "classnames";
 import Link from "next/link";
 import Authenall from "@/components/UserAuthen/authenall";
 import FullScreenComponent from "../UserAuthen/FullScreenComponent";
+import { useSelector, useDispatch } from "react-redux";
 const Header = () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);    
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isLoggin , setIsLoggin] = useState(false)   
+  
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      setIsLoggin(true)
+    }
+  },[])
 
   const handleButtonClick = () => {
     setIsFullScreen(true);
@@ -29,6 +41,14 @@ const Header = () => {
   const handleClose = () => {
     setIsFullScreen(false);
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem('accessToken');
+    window.location.reload()
+  }
+
+
   return (
     <header
       className={classNames(
@@ -127,26 +147,48 @@ const Header = () => {
             </Menu>
           </div>
         </div>
-        <div>
-          <Button
-            onClick={handleButtonClick}
-            colorScheme="blue"
-            variant="ghost"
-          >
-            Đăng nhập
-          </Button>
-          <Button
-            onClick={handleButtonClick}
-            bg="#ffcd1f"
-            color="#282e3e"
-            _hover={{
-              bg: "#ffdc62",
-            }}
-          >
-            Đăng ký
-          </Button>
-          {isFullScreen && <FullScreenComponent onClose={handleClose} />}
-        </div>
+        { !isLoggin ? (
+          <div>
+            <Button
+              onClick={handleButtonClick}
+              colorScheme="blue"
+              variant="ghost"
+            >
+              Đăng nhập
+            </Button>
+            <Button
+              onClick={handleButtonClick}
+              bg="#ffcd1f"
+              color="#282e3e"
+              _hover={{
+                bg: "#ffdc62",
+              }}
+            >
+              Đăng ký
+            </Button>
+            {isFullScreen && <FullScreenComponent onClose={handleClose} />}
+          </div>
+        ) : (
+          <div>
+            <Button
+              onClick={handleButtonClick}
+              bg="#ffcd1f"
+              color="#282e3e"
+              _hover={{
+                bg: "#ffdc62",
+              }}
+            >
+              Profile
+            </Button>
+            <Button
+              onClick={handleLogout}
+              colorScheme="blue"
+              variant="ghost"
+            >
+              Logout
+            </Button>
+          </div>
+        )}
       </div>
     </header>
   );

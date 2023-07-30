@@ -1,14 +1,22 @@
-import React, { useState } from "react";
-import { Select, Checkbox, Tooltip, Button } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Select, Checkbox, Tooltip, Button, Radio, RadioGroup, Stack  } from "@chakra-ui/react";
 
 const DateOfBirth = ({ onChange }) => {
+  const accountTypeOptions = {
+    "teacher": "Tôi là Giáo viên", 
+    "student": "Tôi là Học sinh"
+  }; // Danh sách các lựa chọn
   const [dateOfBirth, setDateOfBirth] = useState({
     day: "",
     month: "",
     year: "",
   });
+  const [accountType, setAccountType] = useState("student");
+  const [accountTypeError, setAccountTypeError] = useState(false)
 
-  const [accountType, setAccountType] = useState("");
+  useEffect(() => {
+    updateRegisterData()
+  },[dateOfBirth, accountType, accountTypeError])
 
   const handleDateChange = (e) => {
     const { name, value } = e.target;
@@ -16,24 +24,35 @@ const DateOfBirth = ({ onChange }) => {
       ...prevDateOfBirth,
       [name]: value,
     }));
-
-    updateRegisterData();
   };
 
-  const handleAccountTypeChange = (e) => {
-    const value = e.target.value;
-    setAccountType(accountType === value ? "" : value);
-    updateRegisterData();
+  const handleAccountTypeChange = (value) => {
+    setAccountType(value)
   };
 
   const updateRegisterData = () => {
+    setAccountTypeError(false)
+    if (accountType == 'teacher' ) {
+      const today = new Date(); // Lấy ngày hiện tại
+      const birthDate = new Date(dateOfBirth.year, dateOfBirth.month - 1, dateOfBirth.day); // Tạo đối tượng Date từ thông tin ngày, tháng và năm sinh
+    
+      let age = today.getFullYear() - birthDate.getFullYear(); // Tính toán tuổi dựa vào năm sinh và năm hiện tại
+    
+      // Kiểm tra xem đã qua ngày sinh nhật của năm hiện tại chưa
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      const dayDiff = today.getDate() - birthDate.getDate();
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        age--;
+      }
+      setAccountTypeError(age < 18)
+    }
     onChange({
       dateOfBirth: new Date(
         dateOfBirth.year,
         dateOfBirth.month - 1,
         dateOfBirth.day
       ),
-      accountType,
+      accountType: !accountTypeError  ? accountType : '' ,
     });
   };
 
@@ -57,34 +76,18 @@ const DateOfBirth = ({ onChange }) => {
     if (dateOfBirth.day && dateOfBirth.month && dateOfBirth.year) {
       return (
         <div className="">
-          <div>
-            <label className="inline-flex items-center mb-2 mt-2">
-              <Checkbox
-                name="accountType"
-                value="teacher"
-                checked={accountType === "teacher"}
-                onChange={(e) => handleAccountTypeChange(e)}
-                className="mr-2"
-                size="lg"
-                isInvalid={age < 18}
-                disabled={age < 18}
-              />
-              <span className="text-base">Tôi là Giáo viên</span>
-            </label>
-          </div>
-          <div>
-            <label className="inline-flex items-center mt-2 mb-2">
-              <Checkbox
-                name="accountType"
-                value="student"
-                checked={accountType === "student"}
-                onChange={(e) => handleAccountTypeChange(e)}
-                className="mr-2 "
-                size="lg"
-              />
-              <span className="text-base">Tôi là Học sinh</span>
-            </label>
-          </div>
+          <RadioGroup value={accountType} onChange={(value) => handleAccountTypeChange(value)}>
+            <Stack spacing={4}>
+              {Object.entries(accountTypeOptions).map(([key, value]) => (
+                <Radio key={key} value={key}>
+                  {value}
+                </Radio>
+              ))}
+            </Stack>
+          </RadioGroup>
+          {accountTypeError && (
+          <p className="mt-2 text-red-400 text-xs font-bold">GIÁO VIÊN CHỈ DANH CHO ĐỐI TƯỢNG TRÊN 18 TUỔI</p>
+        )}
         </div>
       );
     }
